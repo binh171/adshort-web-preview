@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../lib/store'
 import { publishToMeta } from '../../lib/be'
 import { FORMATS } from '../../data/formats'
+import Compliance from './Compliance'
 
 export default function Results() {
   const nav = useNavigate()
-  const { variants, selected, setSelected, product, formatId, saveToLibrary } = useApp()
+  const { variants, selected, setSelected, product, formatId, saveToLibrary, metaConnected } = useApp()
   const [toast, setToast] = useState('')
+  const [canExport, setCanExport] = useState(true)
   const fmt = FORMATS.find((f) => f.id === formatId)
 
   if (!variants.length || !product) { nav('/advideo'); return null }
@@ -20,8 +22,9 @@ export default function Results() {
     flash('Saved to library ✓')
   }
   const publish = async () => {
+    if (!metaConnected) { nav('/connect'); return } // pre-flight before any handshake
     const r = await publishToMeta(selected ?? 'v0') // ⧗ BE/OAuth
-    flash(r.note)
+    flash(r.ok ? 'Published to Meta ✓' : r.note)
   }
 
   return (
@@ -47,15 +50,17 @@ export default function Results() {
 
       <div className="addons" style={{ marginBottom: 16 }}>
         <button className="pill" onClick={() => flash('Music swapped ✓')}>🎵 Swap music</button>
-        <button className="pill" onClick={() => flash('Edit text / CTA (inline editor)')}>✏️ Edit text / CTA</button>
+        <button className="pill" onClick={() => nav('/advideo/editor')}>✏️ Open editor</button>
         <button className="pill" onClick={() => flash('Mood changed ✓')}>🎬 Change mood</button>
         <button className="pill" onClick={() => nav('/advideo/generating')}>↻ Regenerate</button>
       </div>
 
-      <div className="actionbar">
-        <button className="btn pri" onClick={() => flash('Exported MP4 (Ads-Manager ready) ✓')}>⬇ Export MP4</button>
+      <Compliance category={product.category} formatName={fmt?.name} onGate={setCanExport} />
+
+      <div className="actionbar" style={{ marginTop: 14 }}>
+        <button className="btn pri" disabled={!canExport} onClick={() => flash('Exported MP4 (C2PA-embedded, Ads-Manager ready) ✓')}>⬇ Export MP4</button>
         <button className="btn sec" onClick={save}>🗂 Save to library</button>
-        <button className="btn sec" onClick={publish}>🔗 Publish to Meta →<span className="betag">⧗ BE/OAuth</span></button>
+        <button className="btn sec" onClick={publish}>🔗 {metaConnected ? 'Publish to Meta →' : 'Connect Meta to publish →'}<span className="betag">⧗ BE/OAuth</span></button>
         <span className="spacer">Publish &amp; batch unlock on a plan · export free to verify</span>
       </div>
 

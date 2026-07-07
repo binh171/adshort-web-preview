@@ -30,13 +30,15 @@ export default function Explore() {
 
       <div className="startbar">
         <div className="txt">
-          <h3>Start from your product</h3>
-          <p>Upload your real photos (or send from phone). We detect the product, cut the background, and pick the best angles — no fantasy AI, no "looks-cheap" avatars.</p>
+          <h3>{product ? `✓ ${product.productName}` : 'Start from your product'}</h3>
+          <p>{product
+            ? 'Ready from your phone — background cut, angles detected. Pick a format below and we skip straight to the brief.'
+            : 'Upload your real photos (or send from phone). We detect the product, cut the background, and pick the best angles — no fantasy AI, no "looks-cheap" avatars.'}</p>
         </div>
         <button className="up" onClick={() => start('review')} disabled={busy}>
-          <span className="ic">{busy ? '⏳' : '⬆'}</span>
-          {busy ? 'Detecting…' : 'Upload / choose product'}
-          <span className="betag">⧗ BE detect + remove-BG</span>
+          <span className="ic">{busy ? '⏳' : product ? '✓' : '⬆'}</span>
+          {busy ? 'Detecting…' : product ? 'Use this product' : 'Upload / choose product'}
+          <span className="betag">{product ? '📱 from phone' : '⧗ BE detect + remove-BG'}</span>
         </button>
       </div>
 

@@ -4,7 +4,14 @@ import Explore from './features/advideo/Explore'
 import Console from './features/advideo/Console'
 import Generating from './features/advideo/Generating'
 import Results from './features/advideo/Results'
+import Editor from './features/advideo/Editor'
 import Library from './features/Library'
+import Inbox from './features/Inbox'
+import BatchStudio from './features/BatchStudio'
+import Trending from './features/Trending'
+import Billing from './features/Billing'
+import Intelligence from './features/Intelligence'
+import Connect from './features/Connect'
 import FirstRun from './features/onboarding/FirstRun'
 import Stub from './features/Stub'
 
@@ -22,13 +29,17 @@ function Shell() {
         <div className="tabs">
           {tab('store', 'Store', '/store')}
           {tab('advideo', 'AdVideo', '/advideo')}
+          {tab('batch', '⚡ Batch', '/batch')}
+          {tab('trending', '🔥 Trending', '/trending')}
+          {tab('intel', '📊 Intel', '/intelligence')}
+          {tab('inbox', 'Inbox', '/inbox')}
           {tab('product', 'Product', '/product')}
           {tab('library', 'Library', '/library')}
         </div>
         <div className="right">
           <button className="tab" onClick={() => nav('/onboarding')}>▶ First run</button>
-          <span className="credits">🎬 <b className="mono">{credits}</b> videos left</span>
-          <span className="upgrade">▲ Upgrade</span>
+          <button className="credits" onClick={() => nav('/billing')}>🎬 <b className="mono">{credits}</b> videos left</button>
+          <button className="upgrade" onClick={() => nav('/billing')}>▲ Upgrade</button>
         </div>
       </div>
       <div className="bebanner"><div className="in">
@@ -49,6 +60,13 @@ export default function App() {
         <Route path="/advideo/create" element={<Console />} />
         <Route path="/advideo/generating" element={<Generating />} />
         <Route path="/advideo/results" element={<Results />} />
+        <Route path="/advideo/editor" element={<Editor />} />
+        <Route path="/batch" element={<BatchStudio />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/intelligence" element={<Intelligence />} />
+        <Route path="/connect" element={<Connect />} />
+        <Route path="/inbox" element={<Inbox />} />
         <Route path="/library" element={<Library />} />
         <Route path="/store" element={<Stub tab="Store" desc="Image editor for product photos (Photoroom-style). Stubbed in this AdVideo-first build." icon="🖼️" />} />
         <Route path="/product" element={<Stub tab="Product" desc="Product library & angle manager. Stubbed in this AdVideo-first build." icon="📦" />} />
