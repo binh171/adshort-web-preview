@@ -38,7 +38,7 @@ export async function detectProduct(_files: File[] | null): Promise<DetectResult
 export async function buildBrief(formatId: string, product: DetectResult): Promise<string> {
   await wait(300)
   const briefs: Record<string, string> = {
-    review: `Open on a warm handheld close-up of {front} held to natural window light. Creator turns it to show {label} and reads the key claim. Mid beat: slow push-in on {texture} as it is applied. VO: warm, casual — "Ever notice how…". End on a confident verdict with {front} in soft focus. Style: raw phone-camera, real, no filter.`,
+    review: `Open on a warm handheld close-up of {front} held to natural window light. Creator turns it to show {label} and reads the key claim. Mid beat: slow push-in on {texture} as it is applied. VO: warm, casual, "Ever notice how…". End on a confident verdict with {front} in soft focus. Style: raw phone-camera, real, no filter.`,
     demo: `Hero shot of {front} on a clean surface. Hand enters, picks it up, demonstrates the one-tap use. Push-in on {texture} solving the problem in under 5s. VO: crisp problem→solution. Style: bright, clean, product-first.`,
     beforeafter: `Split intro: dull "before" state, then {front} applied. Slow reveal of the "after" glow on {texture}. VO: honest, results-led (no unrealistic claims). Style: soft natural light, authentic.`,
     testimonial: `Real person to camera holding {front}, warm room tone. They recount the result, glance to {label}. VO intent: skeptic → convinced → recommends. Style: cozy, trustworthy, phone-shot.`,
@@ -64,7 +64,7 @@ export async function* streamProgress(): AsyncGenerator<GenProgress> {
   const steps: [number, string][] = [
     [12, 'Analyzing your product angles…'],
     [34, 'Elevating hero shot…'],
-    [58, 'Animating angles — variant 1 ready'],
+    [58, 'Animating angles, variant 1 ready'],
     [80, 'Rendering variants 2 & 3…'],
     [96, 'Adding music & captions…'],
     [100, 'Composing final cuts'],
@@ -80,7 +80,7 @@ export async function* streamProgress(): AsyncGenerator<GenProgress> {
 // ⧗ BE/OAuth: publish to Meta. Mock only.
 export async function publishToMeta(_variantId: string): Promise<{ ok: boolean; note: string }> {
   await wait(500)
-  return { ok: false, note: '⧗ BE/OAuth not wired — export MP4 for now.' }
+  return { ok: false, note: '⧗ BE/OAuth not wired, export MP4 for now.' }
 }
 
 // ---- Handoff: phone app (capture+monitor) → web cockpit (production) ----
@@ -131,10 +131,10 @@ export async function* streamBatch(combos: BatchCombo[]): AsyncGenerator<{ pct: 
   })
   for (let i = 0; i < cells.length; i++) {
     cells[i].ready = true
-    cells[i].winPred = 52 + ((i * 17 + cells[i].formatName.length * 7) % 42) // deterministic mock 52–93
+    cells[i].winPred = 52 + ((i * 17 + cells[i].formatName.length * 7) % 42) // deterministic mock 52-93
     yield {
       pct: Math.round(((i + 1) / cells.length) * 100),
-      status: `Rendering ${cells[i].formatName} · ◈ ${cells[i].angle} — ${i + 1}/${cells.length}`,
+      status: `Rendering ${cells[i].formatName} · ◈ ${cells[i].angle}, ${i + 1}/${cells.length}`,
       cells: cells.map((x) => ({ ...x })),
     }
     await wait(550)
@@ -149,10 +149,10 @@ export type ReadyCheck = { id: string; label: string; status: 'pass' | 'warn' | 
 export async function checkMetaReadiness(): Promise<ReadyCheck[]> {
   await wait(600)
   return [
-    { id: 'bm', label: 'Business Manager admin role', status: 'warn', detail: '~40% of connects fail silently here — you need Admin (not Employee) on the ad account.' },
-    { id: 'scope', label: 'ads_management permission', status: 'pass', detail: 'Scope will be requested — AdShort can then create & read ads.' },
-    { id: 'review', label: 'App-review status (live publish)', status: 'warn', detail: 'One-click publish needs Meta app-review (2–3 weeks). Export MP4 works today, no review.' },
-    { id: 'pixel', label: 'Pixel access (feeds Intelligence)', status: 'pass', detail: 'Pixel readable — CTR / hold-rate / frequency will flow into Intelligence.' },
+    { id: 'bm', label: 'Business Manager admin role', status: 'warn', detail: '~40% of connects fail silently here, you need Admin (not Employee) on the ad account.' },
+    { id: 'scope', label: 'ads_management permission', status: 'pass', detail: 'Scope will be requested, AdShort can then create & read ads.' },
+    { id: 'review', label: 'App-review status (live publish)', status: 'warn', detail: 'One-click publish needs Meta app-review (2-3 weeks). Export MP4 works today, no review.' },
+    { id: 'pixel', label: 'Pixel access (feeds Intelligence)', status: 'pass', detail: 'Pixel readable, CTR / hold-rate / frequency will flow into Intelligence.' },
   ]
 }
 
@@ -166,9 +166,9 @@ export async function checkCompliance(ctx: { category?: string; formatName?: str
   const beforeAfter = (ctx.formatName ?? '').toLowerCase().includes('before')
   return [
     { id: 'modesty', label: 'Meta modesty policy', status: 'pass', detail: 'Real product footage, no restricted content.' },
-    { id: 'disclosure', label: 'AI disclosure', status: ctx.disclosed ? 'pass' : 'warn', detail: ctx.disclosed ? '"Made with AI" label embedded on export.' : 'Enable the label — Meta favors disclosed AI creative, avoids reach penalty.' },
-    { id: 'claims', label: 'Claim safety', status: health && beforeAfter ? 'warn' : 'pass', detail: health && beforeAfter ? 'Health/beauty before-after: avoid "guaranteed results" — add "results may vary".' : 'No high-risk health/beauty claims detected.' },
-    { id: 'authenticity', label: 'Authenticity / AI-look', status: 'pass', detail: 'Real footage — low AI-look risk. Winning mix: 80% AI test + 20% real-creator proof (+23% conv).' },
+    { id: 'disclosure', label: 'AI disclosure', status: ctx.disclosed ? 'pass' : 'warn', detail: ctx.disclosed ? '"Made with AI" label embedded on export.' : 'Enable the label, Meta favors disclosed AI creative, avoids reach penalty.' },
+    { id: 'claims', label: 'Claim safety', status: health && beforeAfter ? 'warn' : 'pass', detail: health && beforeAfter ? 'Health/beauty before-after: avoid "guaranteed results", add "results may vary".' : 'No high-risk health/beauty claims detected.' },
+    { id: 'authenticity', label: 'Authenticity / AI-look', status: 'pass', detail: 'Real footage, low AI-look risk. Winning mix: 80% AI test + 20% real-creator proof (+23% conv).' },
     { id: 'c2pa', label: 'C2PA provenance', status: 'pending', be: true, detail: 'Content Credentials embedded at export (real-footage = zero compliance tax).' },
     { id: 'platform', label: 'Platform aspect', status: 'pass', detail: 'Meta-first 9:16 / 4:5 / 1:1.' },
   ]
@@ -183,17 +183,17 @@ export async function buildShotScript(_formatId: string, product: DetectResult):
   const a = product.angles
   const at = (i: number) => a[i]?.label ?? a[0]?.label ?? 'front'
   return [
-    { id: 'b1', tStart: 0, tEnd: 3, angle: at(0), action: 'Hero close-up in natural window light', vo: 'Hook — "Ever notice how…"' },
+    { id: 'b1', tStart: 0, tEnd: 3, angle: at(0), action: 'Hero close-up in natural window light', vo: 'Hook, "Ever notice how…"' },
     { id: 'b2', tStart: 3, tEnd: 6, angle: at(1), action: 'Turn to show the label / key claim', vo: 'Skepticism → the detail' },
-    { id: 'b3', tStart: 6, tEnd: 9, angle: at(2), action: 'Slow push-in on texture as it is used', vo: 'Proof — how it actually works' },
-    { id: 'b4', tStart: 9, tEnd: 10, angle: at(0), action: 'End card + product + CTA', vo: 'Verdict — "Install now"' },
+    { id: 'b3', tStart: 6, tEnd: 9, angle: at(2), action: 'Slow push-in on texture as it is used', vo: 'Proof, how it actually works' },
+    { id: 'b4', tStart: 9, tEnd: 10, angle: at(0), action: 'End card + product + CTA', vo: 'Verdict, "Install now"' },
   ]
 }
 
 // ⧗ BE/Stripe: hosted checkout (web) — iOS uses IAP. Mock sets the plan locally.
 export async function startCheckout(_tier: string): Promise<{ ok: boolean; note: string }> {
   await wait(500)
-  return { ok: false, note: '⧗ Stripe checkout not wired — plan applied (mock). Real hosted-checkout swaps in here.' }
+  return { ok: false, note: '⧗ Stripe checkout not wired, plan applied (mock). Real hosted-checkout swaps in here.' }
 }
 
 export const isBEWired = () => Boolean(BE_URL)

@@ -15,8 +15,8 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'studio', name: 'Studio', price: 29, creditsWk: 400, popular: true,
-    tagline: 'Scaling — batch & publish',
-    features: ['400 credits / week', 'Batch matrix — unlimited combos', 'Connect & Publish to Meta', 'Timing / Trend engine', 'Library performance history', 'Priority render'],
+    tagline: 'Scaling, batch & publish',
+    features: ['400 credits / week', 'Batch matrix, unlimited combos', 'Connect & Publish to Meta', 'Timing / Trend engine', 'Library performance history', 'Priority render'],
     cta: 'Choose Studio',
   },
   {

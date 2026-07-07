@@ -33,8 +33,8 @@ export default function Editor() {
   return (
     <div className="stage">
       <button className="back" onClick={() => nav('/advideo/results')}>← Back to variants</button>
-      <h2 className="title">Editor — <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</h2>
-      <p className="sub">Fine-tune the shot-script beat by beat, trim, caption and pick the aspect — then export. Product stays pinned (element-lock); you edit timing &amp; story, not hallucinated scenes.</p>
+      <h2 className="title">Editor: <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</h2>
+      <p className="sub">Fine-tune the shot-script beat by beat, trim, caption and pick the aspect, then export. Product stays pinned (element-lock); you edit timing &amp; story, not hallucinated scenes.</p>
 
       <div className="grid2" style={{ marginTop: 16, gridTemplateColumns: '1.15fr 1fr' }}>
         <div className="panel">
@@ -43,7 +43,7 @@ export default function Editor() {
             <div className="timeline">
               {beats.map((b) => (
                 <div className="beat" key={b.id}>
-                  <div className="btime mono">{b.tStart}–{b.tEnd}s</div>
+                  <div className="btime mono">{b.tStart}-{b.tEnd}s</div>
                   <div className="bbody">
                     <span className="chip" style={{ alignSelf: 'flex-start' }}>◈ {b.angle}</span>
                     <input className="bin" value={b.action} onChange={(e) => setBeat(b.id, { action: e.target.value })} />

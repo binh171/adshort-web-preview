@@ -26,14 +26,14 @@ export default function Explore() {
     <div className="stage">
       <div className="crumb"><b>AdVideo</b> · pick a format or start from your product</div>
       <h2 className="title">What are we selling today?</h2>
-      <p className="sub">Real product footage in, a scroll-stopping ad out. Pick a proven format — or upload your product and we'll suggest one.</p>
+      <p className="sub">Real product footage in, a scroll-stopping ad out. Pick a proven format, or upload your product and we'll suggest one.</p>
 
       <div className="startbar">
         <div className="txt">
           <h3>{product ? `✓ ${product.productName}` : 'Start from your product'}</h3>
           <p>{product
-            ? 'Ready from your phone — background cut, angles detected. Pick a format below and we skip straight to the brief.'
-            : 'Upload your real photos (or send from phone). We detect the product, cut the background, and pick the best angles — no fantasy AI, no "looks-cheap" avatars.'}</p>
+            ? 'Ready from your phone, background cut, angles detected. Pick a format below and we skip straight to the brief.'
+            : 'Upload your real photos (or send from phone). We detect the product, cut the background, and pick the best angles, no fantasy AI, no "looks-cheap" avatars.'}</p>
         </div>
         <button className="up" onClick={() => start('review')} disabled={busy}>
           <span className="ic">{busy ? '⏳' : product ? '✓' : '⬆'}</span>

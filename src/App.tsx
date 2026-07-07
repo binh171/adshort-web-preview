@@ -43,7 +43,7 @@ function Shell() {
         </div>
       </div>
       <div className="bebanner"><div className="in">
-        <b>⚠️ PROTOTYPE — logic/flow real, engine mocked.</b> Steps marked <span className="betag">⧗ BE</span> hit the backend adapter (<code>src/lib/be.ts</code>), mock today → swap to real API when the contract lands. Not a shipped build.
+        <b>⚠️ PROTOTYPE, logic/flow real, engine mocked.</b> Steps marked <span className="betag">⧗ BE</span> hit the backend adapter (<code>src/lib/be.ts</code>), mock today → swap to real API when the contract lands. Not a shipped build.
       </div></div>
       <Outlet />
     </div>

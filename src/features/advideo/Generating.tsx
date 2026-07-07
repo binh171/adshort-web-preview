@@ -36,7 +36,7 @@ export default function Generating() {
     <div className="stage">
       <div className="genwrap">
         <h2 className="title">Making your 3 variants…</h2>
-        <p className="sub">Rendered in parallel — the first shows the moment it's ready, no staring at a spinner. <span className="betag">⧗ BE render</span></p>
+        <p className="sub">Rendered in parallel, the first shows the moment it's ready, no staring at a spinner. <span className="betag">⧗ BE render</span></p>
         <div className="prog"><div className="fill" style={{ width: pct + '%' }} /></div>
         <div className="status">{status}</div>
         <div className="vgrid">

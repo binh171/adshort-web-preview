@@ -53,7 +53,7 @@ export default function Inbox() {
     <div className="stage">
       <div className="crumb"><b>Inbox</b> · the bridge between your phone and this cockpit</div>
       <h2 className="title">From your phone</h2>
-      <p className="sub">You shoot products on your phone; the heavy production lives here on the web. Captures and drafts you send from the AdShort app land in this inbox — no re-upload.</p>
+      <p className="sub">You shoot products on your phone; the heavy production lives here on the web. Captures and drafts you send from the AdShort app land in this inbox, no re-upload.</p>
 
       {/* app ⇄ web split — deliberately different surfaces, one cloud-synced draft */}
       <div className="split">

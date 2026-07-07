@@ -58,15 +58,15 @@ export default function BatchStudio() {
       winRate: c.winPred,
       date: 'today',
       category: product!.category,
-      status: 'fresh', // just generated — no live performance yet
+      status: 'fresh', // just generated, no live performance yet
     }))
   }
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Batch Studio</b> · test many angles at once — the web-only wedge</div>
+      <div className="crumb"><b>Batch Studio</b> · test many angles at once, the web-only wedge</div>
       <h2 className="title">Batch Studio</h2>
-      <p className="sub">Pick a few formats and a few real angles — generate the whole matrix in one run. <b>Test 15 winning angles for the price of one Fiverr video.</b> Your phone gens one at a time; the cockpit gens the grid.</p>
+      <p className="sub">Pick a few formats and a few real angles, generate the whole matrix in one run. <b>Test 15 winning angles for the price of one Fiverr video.</b> Your phone gens one at a time; the cockpit gens the grid.</p>
 
       {!product ? (
         <div className="stub" style={{ marginTop: 24 }}>
@@ -97,7 +97,7 @@ export default function BatchStudio() {
           <div className="actionbar" style={{ marginTop: 14 }}>
             <div>
               <div className="bcount"><b>{K}</b> variant{K === 1 ? '' : 's'} <span className="sub" style={{ margin: 0 }}>= {selF.length} format × {selA.length} angle</span></div>
-              <div className="cost" style={{ textAlign: 'left', marginTop: 2 }}>≈ {K} credits · ${(K * 0.45).toFixed(2)}–{(K * 0.88).toFixed(2)} <span className="betag">⧗ BE gen/render</span></div>
+              <div className="cost" style={{ textAlign: 'left', marginTop: 2 }}>≈ {K} credits · ${(K * 0.45).toFixed(2)}-{(K * 0.88).toFixed(2)} <span className="betag">⧗ BE gen/render</span></div>
             </div>
             <div className="spacer" />
             {!enough && K > 0 && <span className="sub" style={{ margin: 0, color: 'var(--leak)' }}>Need {K} credits (have {credits})</span>}
@@ -117,7 +117,7 @@ export default function BatchStudio() {
                 <div className="spacer" />
                 <button className="btn sec" disabled={!keepers.length} onClick={saveWinners}>💾 Save {keepers.length} winners to Library</button>
               </div>}
-              {done && <div className="note" style={{ marginBottom: 14 }}>🧬 <b>Hybrid mix tip:</b> these are AI test variants. Pair the top keeper with <b>one real-creator proof clip</b> — the 80% AI-test / 20% real-proof mix converts +23% and hardens Meta compliance.</div>}
+              {done && <div className="note" style={{ marginBottom: 14 }}>🧬 <b>Hybrid mix tip:</b> these are AI test variants. Pair the top keeper with <b>one real-creator proof clip</b>, the 80% AI-test / 20% real-proof mix converts +23% and hardens Meta compliance.</div>}
               <div className="bgrid">
                 {cells.map((c) => (
                   <div className={'bcell' + (c.ready ? ' done' : '')} key={c.id}>

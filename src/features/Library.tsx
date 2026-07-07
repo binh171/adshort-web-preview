@@ -52,16 +52,16 @@ export default function Library() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Library</b> · your ad system-of-record — what worked, by product / format / month</div>
+      <div className="crumb"><b>Library</b> · your ad system-of-record, what worked, by product / format / month</div>
       <h2 className="title">Your creative library</h2>
-      <p className="sub">Every ad + how it performed, in one memory. The moat against churn: your winners stay searchable and one-click remixable — Fresh &amp; Scaling, never a "loser" verdict.</p>
+      <p className="sub">Every ad + how it performed, in one memory. The moat against churn: your winners stay searchable and one-click remixable, Fresh &amp; Scaling, never a "loser" verdict.</p>
 
       {/* second-brain insights */}
       <div className="insights">
         <div className="insight"><div className="v">{insight.total}</div><div className="k">Ads on record</div></div>
         <div className="insight"><div className="v">{insight.scaling}</div><div className="k">Scaling now</div></div>
-        <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topFmt?.[0] ?? '—'}</div><div className="k">Best format · {insight.topFmt ? Math.round(insight.topFmt[1]) + '% avg' : ''}</div></div>
-        <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topCat?.[0] ?? '—'}</div><div className="k">Best category · {insight.topCat ? Math.round(insight.topCat[1]) + '% avg' : ''}</div></div>
+        <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topFmt?.[0] ?? '-'}</div><div className="k">Best format · {insight.topFmt ? Math.round(insight.topFmt[1]) + '% avg' : ''}</div></div>
+        <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topCat?.[0] ?? '-'}</div><div className="k">Best category · {insight.topCat ? Math.round(insight.topCat[1]) + '% avg' : ''}</div></div>
       </div>
 
       <div className="filters">

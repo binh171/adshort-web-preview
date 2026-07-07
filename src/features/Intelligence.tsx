@@ -13,11 +13,11 @@ function analyze(i: LibraryItem): Metric {
   const freq = i.status === 'fatigued' ? 3.1 : i.status === 'scaling' ? 1.7 : 2.2
   const spend = i.spend ?? 0
   const conf: Metric['conf'] = spend >= 500 ? 'significant' : spend >= 200 ? 'building' : 'low'
-  let rec = 'Keep testing', why = `Only $${spend} spent — below significance. Give it ~$${Math.max(0, 500 - spend)} more before a scale call.`
+  let rec = 'Keep testing', why = `Only $${spend} spent, below significance. Give it ~$${Math.max(0, 500 - spend)} more before a scale call.`
   if (i.status === 'fatigued') {
-    rec = 'Refresh'; why = `Frequency ${freq}× (fatigue) and CTR sliding. Fresh creative on the same offer — don't kill a working product.`
+    rec = 'Refresh'; why = `Frequency ${freq}× (fatigue) and CTR sliding. Fresh creative on the same offer, don't kill a working product.`
   } else if (conf === 'significant' && ctr >= 2) {
-    rec = 'Scale'; why = `CTR ${ctr}% vs ${BASELINE_CTR}% baseline, hold-rate ${hold}% — significant at $${spend}. Raise budget 20–30%.`
+    rec = 'Scale'; why = `CTR ${ctr}% vs ${BASELINE_CTR}% baseline, hold-rate ${hold}%, significant at $${spend}. Raise budget 20-30%.`
   }
   return { ctr, hold, freq, spend, conf, rec, why }
 }
@@ -30,9 +30,9 @@ export default function Intelligence() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Intelligence</b> · honest signals — why, not just a score</div>
+      <div className="crumb"><b>Intelligence</b> · honest signals, why, not just a score</div>
       <h2 className="title">What to scale, what to refresh</h2>
-      <p className="sub">Pixel-clean CTR, hold-rate &amp; frequency with a confidence band — and the <b>reason</b> behind every call. No blind "winner/loser": Motion shows a number, we tell you why. <span className="betag">⧗ BE metrics (Meta pixel)</span></p>
+      <p className="sub">Pixel-clean CTR, hold-rate &amp; frequency with a confidence band, and the <b>reason</b> behind every call. No blind "winner/loser": Motion shows a number, we tell you why. <span className="betag">⧗ BE metrics (Meta pixel)</span></p>
 
       <div className="insights">
         <div className="insight"><div className="v">{rows.length}</div><div className="k">Ads tracked</div></div>

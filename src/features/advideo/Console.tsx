@@ -30,7 +30,7 @@ export default function Console() {
   return (
     <div className="stage">
       <button className="back" onClick={() => nav('/advideo')}>← Back to formats</button>
-      <h2 className="title">Brief — <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</h2>
+      <h2 className="title">Brief: <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</h2>
       <p className="sub">The brain wrote the shot-script from your format. The ◈ chips are <b>your real product angles</b>. Edit any word before generating.</p>
 
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -50,7 +50,7 @@ export default function Console() {
             ))}
             <div className="angle add" title="add another real angle">+</div>
           </div>
-          <div className="note">⚙️ Engine (real-footage): these animate <b>your uploaded angles</b> via i2v + compose — not a text-to-fantasy model. Product stays pinned (element-lock); only safe knobs are editable.</div>
+          <div className="note">⚙️ Engine (real-footage): these animate <b>your uploaded angles</b> via i2v + compose, not a text-to-fantasy model. Product stays pinned (element-lock); only safe knobs are editable.</div>
         </div>
 
         <div className="panel">
@@ -74,7 +74,7 @@ export default function Console() {
       </div>
 
       <div className="ctobar">
-        <b>CTO — feasible with today's engine?</b> Yes: Seedream/NB elevate → Kling 2.5T i2v (animate real angles) → ffmpeg compose · ~$0.45–0.88/clip.
+        <b>CTO, feasible with today's engine?</b> Yes: Seedream/NB elevate → Kling 2.5T i2v (animate real angles) → ffmpeg compose · ~$0.45-0.88/clip.
         <div><span className="k">real-angle gate</span><span className="k">brain shot-script</span><span className="k">i2v not t2v</span><span className="k">⚠ 3× latency → parallel + progressive reveal</span></div>
       </div>
     </div>

@@ -21,7 +21,7 @@ export default function Billing() {
     <div className="stage">
       <div className="crumb"><b>Plans</b> · pay for winning ads, not locked-in seats</div>
       <h2 className="title">Test more angles, keep more winners</h2>
-      <p className="sub">Flat weekly credits that auto-reset — no hoarding. No watermark, ever. Cancel same-day and keep the credits you already have. One winning angle pays for the month.</p>
+      <p className="sub">Flat weekly credits that auto-reset, no hoarding. No watermark, ever. Cancel same-day and keep the credits you already have. One winning angle pays for the month.</p>
 
       <div className="pricing">
         {PLANS.map((p) => (
@@ -41,7 +41,7 @@ export default function Billing() {
       </div>
 
       <div className="freeline">
-        <b>Free trial</b> · 15 credits · 14 days · <b>credit-limit, not watermark</b> · cancel same-day &amp; keep your credits — no cancel-trap. You have <b className="mono">{credits}</b> credits now on the <b>{plan}</b> plan.
+        <b>Free trial</b> · 15 credits · 14 days · <b>credit-limit, not watermark</b> · cancel same-day &amp; keep your credits, no cancel-trap. You have <b className="mono">{credits}</b> credits now on the <b>{plan}</b> plan.
       </div>
 
       {toast && <div className="toast">{toast}</div>}
