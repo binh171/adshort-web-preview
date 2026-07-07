@@ -1,0 +1,67 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useApp } from '../../lib/store'
+import { publishToMeta } from '../../lib/be'
+import { FORMATS } from '../../data/formats'
+
+export default function Results() {
+  const nav = useNavigate()
+  const { variants, selected, setSelected, product, formatId, saveToLibrary } = useApp()
+  const [toast, setToast] = useState('')
+  const fmt = FORMATS.find((f) => f.id === formatId)
+
+  if (!variants.length || !product) { nav('/advideo'); return null }
+
+  const flash = (m: string) => { setToast(m); setTimeout(() => setToast(''), 2600) }
+
+  const save = () => {
+    const v = variants.find((x) => x.id === selected) ?? variants[0]
+    saveToLibrary({ id: 'lib_' + Date.now(), format: fmt?.name ?? 'UGC', product: product.productName, poster: v.poster, winRate: undefined, date: 'today' })
+    flash('Saved to library ✓')
+  }
+  const publish = async () => {
+    const r = await publishToMeta(selected ?? 'v0') // ⧗ BE/OAuth
+    flash(r.note)
+  }
+
+  return (
+    <div className="stage">
+      <button className="back" onClick={() => nav('/advideo/create')}>← Tweak the brief</button>
+      <h2 className="title">Three takes on your product</h2>
+      <p className="sub">All from your real footage. Pick one, tweak inline, then export or save to your library.</p>
+
+      <div className="results3">
+        {variants.map((v) => (
+          <button className={'rv' + (v.id === selected ? ' sel' : '')} key={v.id} onClick={() => setSelected(v.id)}>
+            <div className="ph" style={{ background: v.poster }}><span className="tagf">{v.style}</span>0:10 · 9:16</div>
+          </button>
+        ))}
+      </div>
+
+      <div className="trust">
+        <span className="t">✓ Your real product</span>
+        <span className="t">✓ Fully editable</span>
+        <span className="t">✓ C2PA-safe for Meta</span>
+        <span className="t">✓ +32% CTR vs static</span>
+      </div>
+
+      <div className="addons" style={{ marginBottom: 16 }}>
+        <button className="pill" onClick={() => flash('Music swapped ✓')}>🎵 Swap music</button>
+        <button className="pill" onClick={() => flash('Edit text / CTA (inline editor)')}>✏️ Edit text / CTA</button>
+        <button className="pill" onClick={() => flash('Mood changed ✓')}>🎬 Change mood</button>
+        <button className="pill" onClick={() => nav('/advideo/generating')}>↻ Regenerate</button>
+      </div>
+
+      <div className="actionbar">
+        <button className="btn pri" onClick={() => flash('Exported MP4 (Ads-Manager ready) ✓')}>⬇ Export MP4</button>
+        <button className="btn sec" onClick={save}>🗂 Save to library</button>
+        <button className="btn sec" onClick={publish}>🔗 Publish to Meta →<span className="betag">⧗ BE/OAuth</span></button>
+        <span className="spacer">Publish &amp; batch unlock on a plan · export free to verify</span>
+      </div>
+
+      {toast && (
+        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: 'var(--dark)', color: '#eafaf3', padding: '11px 20px', borderRadius: 12, fontSize: '.88rem', fontWeight: 600, boxShadow: 'var(--shadow)', zIndex: 60 }}>{toast}</div>
+      )}
+    </div>
+  )
+}
