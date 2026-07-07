@@ -5,6 +5,8 @@
 // ⧗ BE items flagged in UI map 1:1 to the functions below.
 // ============================================================================
 
+import { poster } from './img'
+
 export type Angle = { id: string; label: string; kind: 'front' | 'label' | 'texture' | 'side' | 'detail'; url: string }
 export type DetectResult = { category: string; productName: string; label: string; angles: Angle[] }
 export type Variant = { id: string; style: 'Cinematic' | 'Demo' | 'Hook'; poster: string; ready: boolean }
@@ -55,9 +57,9 @@ export async function startGeneration(_brief: string, _opts: unknown): Promise<{
 // Real BE latency ~59–99s/clip → parallel render + progressive reveal.
 export async function* streamProgress(): AsyncGenerator<GenProgress> {
   const variants: Variant[] = [
-    { id: 'v0', style: 'Cinematic', poster: grad('#c98a6a', '#5a3226'), ready: false },
-    { id: 'v1', style: 'Demo', poster: grad('#6a92c9', '#26385a'), ready: false },
-    { id: 'v2', style: 'Hook', poster: grad('#7ab98f', '#265a3e'), ready: false },
+    { id: 'v0', style: 'Cinematic', poster: poster('product_hero'), ready: false },
+    { id: 'v1', style: 'Demo', poster: poster('ugc'), ready: false },
+    { id: 'v2', style: 'Hook', poster: poster('cream'), ready: false },
   ]
   const steps: [number, string][] = [
     [12, 'Analyzing your product angles…'],
@@ -94,10 +96,10 @@ export type PhoneItem = {
 }
 
 const INBOX: PhoneItem[] = [
-  { id: 'c1', kind: 'capture', product: 'Ceramic Pour-Over Set', posters: [grad('#c98a6a', '#7a4a38')], source: 'iPhone 15 Pro', ago: '12m ago', status: 'new' },
-  { id: 'c2', kind: 'capture', product: 'Matcha Whisk Kit', posters: [grad('#7ab98f', '#2f6a4a')], source: 'iPhone 15 Pro', ago: '2h ago', status: 'new' },
-  { id: 'c3', kind: 'draft', product: 'Linen Apron', posters: [grad('#6a92c9', '#2f4f7a')], source: 'iPhone 15 Pro', ago: 'yesterday', status: 'used', note: 'started on phone · 1 quick variant' },
-  { id: 'c4', kind: 'capture', product: 'Beard Oil 30ml', posters: [grad('#b57bb0', '#5a2f57')], source: 'iPad', ago: '2d ago', status: 'used' },
+  { id: 'c1', kind: 'capture', product: 'Ceramic Pour-Over Set', posters: [poster('coffee')], source: 'iPhone 15 Pro', ago: '12m ago', status: 'new' },
+  { id: 'c2', kind: 'capture', product: 'Matcha Whisk Kit', posters: [poster('matcha')], source: 'iPhone 15 Pro', ago: '2h ago', status: 'new' },
+  { id: 'c3', kind: 'draft', product: 'Linen Apron', posters: [poster('apron')], source: 'iPhone 15 Pro', ago: 'yesterday', status: 'used', note: 'started on phone · 1 quick variant' },
+  { id: 'c4', kind: 'capture', product: 'Beard Oil 30ml', posters: [poster('beard_oil')], source: 'iPad', ago: '2d ago', status: 'used' },
 ]
 
 // ⧗ BE: pull assets captured on the phone app + cloud-synced drafts.

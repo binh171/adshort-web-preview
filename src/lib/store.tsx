@@ -1,5 +1,6 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
 import type { DetectResult, Variant } from './be'
+import { poster } from './img'
 
 export type GenOpts = { aspect: '9:16' | '4:5' | '1:1'; length: 8 | 10 | 15; hook: string; music: boolean }
 export type AdStatus = 'scaling' | 'fresh' | 'fatigued'
@@ -34,11 +35,11 @@ type AppState = {
 const Ctx = createContext<AppState | null>(null)
 
 const seedLibrary: LibraryItem[] = [
-  { id: 'l1', format: 'UGC Review', product: 'Vitamin C Serum', poster: 'linear-gradient(160deg,#c98a6a,#7a4a38)', winRate: 82, date: 'Jun 28', category: 'Beauty', ctr: 2.8, spend: 640, status: 'scaling' },
-  { id: 'l2', format: 'Before-After', product: 'Retinol Night Cream', poster: 'linear-gradient(160deg,#7ab98f,#2f6a4a)', winRate: 74, date: 'Jun 24', category: 'Beauty', ctr: 2.3, spend: 410, status: 'scaling' },
-  { id: 'l4', format: 'Testimonial', product: 'Collagen Peptides', poster: 'linear-gradient(160deg,#c9b46a,#7a682f)', winRate: 77, date: 'Jun 15', category: 'Supplement', ctr: 2.4, spend: 520, status: 'scaling' },
-  { id: 'l3', format: 'Problem-Demo', product: 'Spice Organizer', poster: 'linear-gradient(160deg,#6a92c9,#2f4f7a)', winRate: 61, date: 'Jun 12', category: 'Home', ctr: 1.5, spend: 230, status: 'fatigued' },
-  { id: 'l5', format: 'Unboxing', product: 'Pet Grooming Kit', poster: 'linear-gradient(160deg,#c96a9e,#7a2f5a)', winRate: 58, date: 'Jun 08', category: 'Pet', ctr: 1.4, spend: 180, status: 'fatigued' },
+  { id: 'l1', format: 'UGC Review', product: 'Vitamin C Serum', poster: poster('serum'), winRate: 82, date: 'Jun 28', category: 'Beauty', ctr: 2.8, spend: 640, status: 'scaling' },
+  { id: 'l2', format: 'Before-After', product: 'Retinol Night Cream', poster: poster('cream'), winRate: 74, date: 'Jun 24', category: 'Beauty', ctr: 2.3, spend: 410, status: 'scaling' },
+  { id: 'l4', format: 'Testimonial', product: 'Collagen Peptides', poster: poster('supplement'), winRate: 77, date: 'Jun 15', category: 'Supplement', ctr: 2.4, spend: 520, status: 'scaling' },
+  { id: 'l3', format: 'Problem-Demo', product: 'Spice Organizer', poster: poster('home'), winRate: 61, date: 'Jun 12', category: 'Home', ctr: 1.5, spend: 230, status: 'fatigued' },
+  { id: 'l5', format: 'Unboxing', product: 'Pet Grooming Kit', poster: poster('pet_grooming'), winRate: 58, date: 'Jun 08', category: 'Pet', ctr: 1.4, spend: 180, status: 'fatigued' },
 ]
 
 export function AppProvider({ children }: { children: ReactNode }) {
