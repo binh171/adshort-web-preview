@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../lib/store'
 import { detectProduct } from '../../lib/be'
 
+const BASE = import.meta.env.BASE_URL
 const EX = [
-  { cat: 'Skincare', fmt: 'review', dur: '0:10' },
-  { cat: 'Pet', fmt: 'demo', dur: '0:08' },
-  { cat: 'Supplement', fmt: 'testimonial', dur: '0:12' },
+  { cat: 'Skincare', fmt: 'review', dur: '0:10', img: 'skincare' },
+  { cat: 'Pet', fmt: 'demo', dur: '0:08', img: 'pet' },
+  { cat: 'Supplement', fmt: 'testimonial', dur: '0:12', img: 'supplement' },
 ]
 
 export default function FirstRun() {
@@ -71,7 +72,7 @@ export default function FirstRun() {
             {EX.map((e, i) => (
               <div className="proofrow" key={i}>
                 <div className="ba">
-                  <div className="pbefore"><span className="ptag">Before</span>Raw photo</div>
+                  <div className="pbefore" style={{ backgroundImage: `url(${BASE}proof/${e.img}.jpg)` }}><span className="ptag">Before</span></div>
                   <div className="pseam">→</div>
                   <div className="pafter"><span className="ptag">Ad</span><span className="play">▶</span><span className="pdur">{e.dur}</span></div>
                 </div>
