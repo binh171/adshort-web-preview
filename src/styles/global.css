@@ -209,10 +209,17 @@ a{color:var(--brand);text-decoration:none}
 .heroC .aicard{position:absolute;left:-22px;bottom:-20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow-lift);width:238px}
 .heroC .aicard .step{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ink-2);margin:5px 0 0}
 .heroC .aicard .step .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);flex:0 0 auto}
+/* B — emerald energy (centered, punchy) */
+.heroB{position:relative;padding:64px 44px 56px;text-align:center;background:var(--mesh),radial-gradient(70% 90% at 50% -12%,var(--brand-soft),transparent 60%),var(--panel)}
+.heroB .herobig{margin-inline:auto;max-width:15ch}
+.heroB .herosub{margin-inline:auto}
+.heroB .genbar{margin:2px auto 0;box-shadow:0 0 0 5px oklch(80% .10 166/.20),0 22px 54px -26px var(--brand-glow)}
+.heroB .herolinks{justify-content:center}
 @media(max-width:820px){
   .heroC{grid-template-columns:1fr;padding:34px 22px}
   .heroC .collage{margin-top:10px}
   .heroC .aicard{position:static;width:auto;margin-top:12px}
+  .heroB{padding:40px 20px}
   .genbar{max-width:none}
 }
 

@@ -2,7 +2,7 @@ import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { detectProduct } from '../lib/be'
-import { clip, poster } from '../lib/img'
+import { clip } from '../lib/img'
 import { SEASONS } from '../data/seasons'
 import HoverVideo from './HoverVideo'
 
@@ -34,32 +34,18 @@ export default function Home() {
 
   return (
     <div className="stage">
-      {/* HERO — real-product collage (C) + Generate bar (B). Reads dark-luxe (A) automatically in dark mode. */}
-      <section className="hero heroC">
-        <div className="c">
-          <div className="heroeye">Real footage in, scroll-stopping ad out</div>
-          <h1 className="herobig">Real footage in.<br /><span className="em">Ads that sell</span> out.</h1>
-          <p className="herosub">Your real product photos become scroll-stopping video ads. We detect the product, cut the background, pick the angles, then narrate and export for Meta.</p>
-          <div className="genbar">
-            <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Paste your Shopify / product URL, or upload a photo" aria-label="Product URL" />
-            <button className="btn pri" onClick={startFromProduct} disabled={busy}>{busy ? 'Detecting…' : 'Generate'}</button>
-          </div>
-          <div className="herolinks">
-            <button className="link" onClick={() => nav('/advideo')}>Browse formats →</button>
-            <button className="link" onClick={() => nav('/inbox')}>📱 Send from phone →</button>
-          </div>
+      {/* HERO — emerald-energy: centered oversized headline + glowing Generate bar */}
+      <section className="hero heroB">
+        <div className="heroeye">Real footage in, scroll-stopping ad out</div>
+        <h1 className="herobig">Turn one product into<br /><span className="em">ten winning ads</span>.</h1>
+        <p className="herosub">Paste your store link or upload a photo. We detect, edit, narrate and export for Meta, at the scale your ads need. Real footage only, no avatars.</p>
+        <div className="genbar">
+          <input value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Paste your Shopify / product URL, or upload a photo" aria-label="Product URL" />
+          <button className="btn pri" onClick={startFromProduct} disabled={busy}>{busy ? 'Detecting…' : 'Generate'}</button>
         </div>
-        <div className="collage">
-          <div className="t tall" style={{ background: poster('serum') }} />
-          <div className="t" style={{ background: poster('apron') }} />
-          <div className="t" style={{ background: poster('supplement') }} />
-          <div className="t tall" style={{ background: poster('skinface') }} />
-          <div className="aicard">
-            <b style={{ fontSize: '.86rem' }}>Detecting product…</b>
-            <div className="step"><span className="dot" />Background cut</div>
-            <div className="step"><span className="dot" />4 angles found</div>
-            <div className="step"><span className="dot" />3 variants ready <span className="betag">⧗ BE</span></div>
-          </div>
+        <div className="herolinks">
+          <button className="link" onClick={() => nav('/advideo')}>Browse formats →</button>
+          <button className="link" onClick={() => nav('/inbox')}>📱 Send from phone →</button>
         </div>
       </section>
 
