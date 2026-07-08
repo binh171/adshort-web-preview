@@ -1,8 +1,12 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp, type AdStatus, type LibraryItem } from '../lib/store'
 import { FORMATS } from '../data/formats'
 import { detectProduct } from '../lib/be'
+import { clip } from '../lib/img'
+import HoverVideo from './HoverVideo'
+
+const CAT_CLIP: Record<string, string> = { Beauty: 'beauty3', Supplement: 'beauty2', Home: 'home', Pet: 'pet' }
 
 type Filter = 'all' | AdStatus
 const STATUS_LABEL: Record<AdStatus, string> = { scaling: 'Scaling', fresh: 'Fresh', fatigued: 'Fatigued' }
@@ -91,13 +95,13 @@ export default function Library() {
       </div>
 
       <div className="libgrid">
-        {shown.map((i) => (
-          <div className="card" key={i.id}>
-            <div className="ph" style={{ background: i.poster }}>
+        {shown.map((i, idx) => (
+          <div className="card" key={i.id} style={{ '--i': idx } as CSSProperties}>
+            <HoverVideo className="ph" poster={i.poster} src={clip(CAT_CLIP[i.category ?? ''] ?? 'beauty2')}>
               {i.status && <span className={'statusbadge ' + i.status}>{STATUS_LABEL[i.status]}</span>}
               {i.winRate != null && <span className="winpred" style={{ background: i.winRate >= 70 ? 'var(--brand)' : 'rgba(10,20,15,.6)' }}>win {i.winRate}%</span>}
               {i.product}
-            </div>
+            </HoverVideo>
             <div className="meta">
               <span className="fmt">{i.format}</span>
               <span className="roi">{i.category ?? i.date}</span>

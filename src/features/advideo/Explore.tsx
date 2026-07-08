@@ -1,8 +1,15 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FORMATS, CATEGORIES } from '../../data/formats'
 import { useApp } from '../../lib/store'
 import { detectProduct } from '../../lib/be'
+import { clip } from '../../lib/img'
+import HoverVideo from '../HoverVideo'
+
+const FMT_CLIP: Record<string, string> = {
+  review: 'beauty3', beforeafter: 'beauty4', demo: 'home', unboxing: 'beauty1',
+  testimonial: 'beauty2', hero: 'beauty2', turntable: 'beauty4', petreaction: 'pet',
+}
 
 export default function Explore() {
   const nav = useNavigate()
@@ -49,12 +56,12 @@ export default function Explore() {
       </div>
 
       <div className="gal">
-        {shown.map((f) => (
-          <button className="card" key={f.id} onClick={() => start(f.id)} disabled={busy}>
-            <div className="ph" style={{ background: f.poster }}>
+        {shown.map((f, i) => (
+          <button className="card" key={f.id} onClick={() => start(f.id)} disabled={busy} style={{ '--i': i } as CSSProperties}>
+            <HoverVideo className="ph" poster={f.poster} src={clip(FMT_CLIP[f.id] ?? 'beauty2')}>
               {f.lock !== 'defer' && <span className={'locktag ' + f.lock}>{f.lock === 'lock' ? 'TestFlight' : 'Constrain'}</span>}
               {f.fit}
-            </div>
+            </HoverVideo>
             <div className="meta">
               <span className="fmt">{f.name}</span>
               <span className="roi">{'★'.repeat(f.roi)}</span>

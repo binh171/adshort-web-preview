@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../lib/store'
 import { publishToMeta } from '../../lib/be'
@@ -6,6 +6,7 @@ import { FORMATS } from '../../data/formats'
 import { clip } from '../../lib/img'
 import Compliance from './Compliance'
 import VideoModal from '../VideoModal'
+import HoverVideo from '../HoverVideo'
 
 const CLIPS = ['beauty2', 'beauty3', 'beauty4'] // sample preview per variant
 
@@ -40,8 +41,8 @@ export default function Results() {
 
       <div className="results3">
         {variants.map((v, i) => (
-          <button className={'rv' + (v.id === selected ? ' sel' : '')} key={v.id} onClick={() => { setSelected(v.id); setPreview(clip(CLIPS[i % CLIPS.length])) }}>
-            <div className="ph" style={{ background: v.poster }}><span className="tagf">{v.style}</span>0:10 · 9:16</div>
+          <button className={'rv' + (v.id === selected ? ' sel' : '')} key={v.id} onClick={() => { setSelected(v.id); setPreview(clip(CLIPS[i % CLIPS.length])) }} style={{ '--i': i } as CSSProperties}>
+            <HoverVideo className="ph" poster={v.poster} src={clip(CLIPS[i % CLIPS.length])}><span className="tagf">{v.style}</span>0:10 · 9:16</HoverVideo>
           </button>
         ))}
       </div>
