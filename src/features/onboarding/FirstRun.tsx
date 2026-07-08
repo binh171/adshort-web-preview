@@ -33,7 +33,7 @@ export default function FirstRun() {
         {/* left: message + input (left-aligned, breaks the centered-hero tell) */}
         <div className="obleft">
           <div className="crumb">First run · aha before the wall</div>
-          <h2 className="obh1">Your product photo in. A scroll-stopping ad out.</h2>
+          <h2 className="obh1">Your product photo in. <span className="em">A scroll-stopping ad</span> out.</h2>
           <p className="sub obsub">Ready in minutes. No signup to try, download before you pay.</p>
 
           <div className="startbox">
