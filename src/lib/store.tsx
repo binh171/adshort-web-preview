@@ -20,6 +20,8 @@ type AppState = {
   credits: number
   plan: string
   metaConnected: boolean
+  demo: boolean
+  setDemo: (v: boolean) => void
   setProduct: (p: DetectResult | null) => void
   setFormat: (id: string) => void
   setBrief: (b: string) => void
@@ -53,9 +55,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [credits, setCredits] = useState(20)
   const [plan, setPlan] = useState('trial')
   const [metaConnected, setMetaConnected] = useState(false)
+  const [demo, setDemoState] = useState<boolean>(() => {
+    try { return localStorage.getItem('adshort_demo') === '1' } catch { return false }
+  })
+  const setDemo = (v: boolean) => {
+    setDemoState(v)
+    try { localStorage.setItem('adshort_demo', v ? '1' : '0') } catch { /* ignore */ }
+  }
 
   const value = useMemo<AppState>(() => ({
-    product, formatId, brief, opts, variants, selected, library, credits, plan, metaConnected,
+    product, formatId, brief, opts, variants, selected, library, credits, plan, metaConnected, demo,
+    setDemo,
     setProduct,
     setFormat: setFormatId,
     setBrief,
@@ -66,7 +76,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     spend: (n) => setCredits((c) => Math.max(0, c - n)),
     setPlan,
     setMetaConnected,
-  }), [product, formatId, brief, opts, variants, selected, library, credits, plan, metaConnected])
+  }), [product, formatId, brief, opts, variants, selected, library, credits, plan, metaConnected, demo])
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>
 }

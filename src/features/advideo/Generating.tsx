@@ -15,17 +15,14 @@ export default function Generating() {
     let live = true
     ;(async () => {
       // ⧗ BE: poll render job — progressive reveal (variant 1 first).
+      let last: Variant[] = []
       for await (const p of streamProgress()) {
         if (!live) return
-        setPct(p.pct); setStatus(p.status); setVs(p.variants)
+        setPct(p.pct); setStatus(p.status); setVs(p.variants); last = p.variants
       }
       if (!live) return
-      const final = [
-        { id: 'v0', style: 'Cinematic', poster: 'linear-gradient(160deg,#c98a6a,#5a3226)', ready: true },
-        { id: 'v1', style: 'Demo', poster: 'linear-gradient(160deg,#6a92c9,#26385a)', ready: true },
-        { id: 'v2', style: 'Hook', poster: 'linear-gradient(160deg,#7ab98f,#265a3e)', ready: true },
-      ] as Variant[]
-      setVariants(final); setSelected('v0'); spend(3)
+      // commit the streamed variants (real posters from be.ts), all ready
+      setVariants(last.map((v) => ({ ...v, ready: true }))); setSelected('v0'); spend(3)
       setTimeout(() => live && nav('/advideo/results'), 500)
     })()
     return () => { live = false }

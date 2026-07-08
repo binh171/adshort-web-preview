@@ -50,6 +50,10 @@ a{color:var(--brand);text-decoration:none}
 .credits{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:5px 13px;font-weight:600;color:var(--ink-2)}
 .credits b{color:var(--brand)}
 .upgrade{color:var(--gold);font-weight:700}
+.demotoggle{font-size:.95rem;color:var(--faint);background:none;padding:2px 5px;border-radius:8px;line-height:1;transition:color .15s}
+.demotoggle:hover{color:var(--brand)}
+/* demo mode: hide prototype/dev chrome for a clean pitch (betag + CTO bar) */
+.shell.demo .betag,.shell.demo .ctobar{display:none}
 
 .bebanner{max-width:1120px;margin:10px auto 0;padding:0 22px}
 .bebanner .in{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:11px;padding:10px 15px;font-size:.8rem;color:var(--gold-ink);line-height:1.5}

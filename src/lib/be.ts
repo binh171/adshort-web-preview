@@ -27,9 +27,9 @@ export async function detectProduct(_files: File[] | null): Promise<DetectResult
     productName: 'The Inkey List Hyaluronic Acid Serum',
     label: 'The Inkey List',
     angles: [
-      { id: 'front', label: 'front', kind: 'front', url: grad('#c98a6a', '#7a4a38') },
-      { id: 'label', label: 'label', kind: 'label', url: grad('#7ab98f', '#2f6a4a') },
-      { id: 'texture', label: 'texture', kind: 'texture', url: grad('#6a92c9', '#2f4f7a') },
+      { id: 'front', label: 'front', kind: 'front', url: poster('serum') },
+      { id: 'label', label: 'label', kind: 'label', url: poster('cream') },
+      { id: 'texture', label: 'texture', kind: 'texture', url: poster('product_hero') },
     ],
   }
 }

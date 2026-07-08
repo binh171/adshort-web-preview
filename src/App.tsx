@@ -16,35 +16,36 @@ import FirstRun from './features/onboarding/FirstRun'
 import Stub from './features/Stub'
 
 function Shell() {
-  const { credits } = useApp()
+  const { credits, demo, setDemo } = useApp()
   const nav = useNavigate()
   const { pathname } = useLocation()
   const tab = (id: string, label: string, to: string) => (
     <button className={'tab' + (pathname.startsWith(to) ? ' on' : '')} onClick={() => nav(to)} key={id}>{label}</button>
   )
   return (
-    <div className="shell">
+    <div className={'shell' + (demo ? ' demo' : '')}>
       <div className="topbar">
         <div className="brand"><span className="dot" />AdShort</div>
         <div className="tabs">
-          {tab('store', 'Store', '/store')}
+          {!demo && tab('store', 'Store', '/store')}
           {tab('advideo', 'AdVideo', '/advideo')}
           {tab('batch', '⚡ Batch', '/batch')}
           {tab('trending', '🔥 Trending', '/trending')}
           {tab('intel', '📊 Intel', '/intelligence')}
           {tab('inbox', 'Inbox', '/inbox')}
-          {tab('product', 'Product', '/product')}
+          {!demo && tab('product', 'Product', '/product')}
           {tab('library', 'Library', '/library')}
         </div>
         <div className="right">
-          <button className="tab" onClick={() => nav('/onboarding')}>▶ First run</button>
-          <button className="credits" onClick={() => nav('/billing')}>🎬 <b className="mono">{credits}</b> videos left</button>
+          <button className="demotoggle" onClick={() => setDemo(!demo)} title={demo ? 'Demo mode ON — click to reveal prototype chrome' : 'Demo mode OFF — click to hide prototype/dev chrome for a clean pitch'}>{demo ? '◉' : '◯'}</button>
+          {!demo && <button className="tab" onClick={() => nav('/onboarding')}>▶ First run</button>}
+          <button className="credits" onClick={() => nav('/billing')}>🎬 <b className="mono">{credits}</b> credits</button>
           <button className="upgrade" onClick={() => nav('/billing')}>▲ Upgrade</button>
         </div>
       </div>
-      <div className="bebanner"><div className="in">
+      {!demo && <div className="bebanner"><div className="in">
         <b>⚠️ PROTOTYPE, logic/flow real, engine mocked.</b> Steps marked <span className="betag">⧗ BE</span> hit the backend adapter (<code>src/lib/be.ts</code>), mock today → swap to real API when the contract lands. Not a shipped build.
-      </div></div>
+      </div></div>}
       <Outlet />
     </div>
   )
