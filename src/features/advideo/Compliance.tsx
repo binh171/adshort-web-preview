@@ -25,6 +25,10 @@ export default function Compliance({ category, formatName, onGate }: { category?
   return (
     <div className="panel compliance">
       <h4>🛡 Compliance pre-flight <span className={'cbadge ' + worst}>{worstLabel}</span></h4>
+      <div className="realproof">
+        <span className="rpbadge">✓ 100% Real Creator Proof</span>
+        <span className="t">Built from your real footage, so it skips synthetic-media disclosure and EU AI Act watermarking. Authenticity is your edge, not a compliance tax.</span>
+      </div>
       <label className="cdisc"><input type="checkbox" checked={disclosed} onChange={(e) => setDisclosed(e.target.checked)} /> Embed "Made with AI" label on export</label>
       <div className="clist">
         {checks.map((c) => (

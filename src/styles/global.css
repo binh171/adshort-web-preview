@@ -215,6 +215,19 @@ a{color:var(--brand);text-decoration:none}
   .heroC .aicard{position:static;width:auto;margin-top:12px}
   .genbar{max-width:none}
 }
+
+/* real-creator-proof banner (compliance reframed as strength) */
+.realproof{display:flex;gap:12px;align-items:center;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;padding:11px 14px;margin:12px 0}
+.realproof .rpbadge{font-family:var(--mono);font-size:.68rem;font-weight:800;color:#fff;background:var(--brand);padding:5px 10px;border-radius:999px;white-space:nowrap;flex:0 0 auto}
+.realproof .t{font-size:.8rem;color:var(--ink-2);line-height:1.5}
+
+/* velocity coach */
+.coach{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0;box-shadow:var(--shadow-soft)}
+.coach .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.coach p{font-size:.86rem;color:var(--muted);margin-top:3px;max-width:60ch}
+.coach .coachbar{height:8px;border-radius:20px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden;margin-top:12px}
+.coach .coachbar span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-br));transition:width .5s var(--ease)}
+@media(max-width:640px){.coach .top{flex-direction:column}}
 .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .card{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--panel);text-align:left;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .2s;cursor:pointer}
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--brand-line)}

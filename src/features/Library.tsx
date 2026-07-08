@@ -39,6 +39,11 @@ export default function Library() {
     }
   }, [library])
 
+  // velocity coach: cadence this month vs Meta's fatigue-beating 8-12/mo
+  const curMonth = new Date().toLocaleString('en-US', { month: 'short' })
+  const madeThisMonth = library.filter((i) => (i.date ?? '').startsWith(curMonth)).length
+  const velPct = Math.min(100, Math.round((madeThisMonth / 12) * 100))
+
   const shown = useMemo(() => {
     let list = library.filter((i) => (i.product + i.format + (i.category ?? '')).toLowerCase().includes(q.toLowerCase()))
     if (filter !== 'all') list = list.filter((i) => i.status === filter)
@@ -75,6 +80,17 @@ export default function Library() {
         <div className="insight"><div className="v">{insight.scaling}</div><div className="k">Scaling now</div></div>
         <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topFmt?.[0] ?? '-'}</div><div className="k">Best format · {insight.topFmt ? Math.round(insight.topFmt[1]) + '% avg' : ''}</div></div>
         <div className="insight"><div className="v" style={{ fontSize: '1rem' }}>{insight.topCat?.[0] ?? '-'}</div><div className="k">Best category · {insight.topCat ? Math.round(insight.topCat[1]) + '% avg' : ''}</div></div>
+      </div>
+
+      <div className="coach">
+        <div className="top">
+          <div>
+            <b>Creative velocity</b>
+            <p>You've shipped <b className="em">{madeThisMonth}</b> of Meta's recommended <b>8&ndash;12</b> ads this month. Fresh creative every 2&ndash;4 weeks beats fatigue, sellers who batch win the auction.</p>
+          </div>
+          <button className="btn pri" onClick={() => nav('/batch')}>Batch more →</button>
+        </div>
+        <div className="coachbar"><span style={{ width: velPct + '%' }} /></div>
       </div>
 
       <div className="filters">
