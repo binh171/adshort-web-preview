@@ -111,11 +111,13 @@ export default function Library() {
       </div>
 
       <div className="libgrid">
-        {shown.map((i, idx) => (
-          <div className="card" key={i.id} style={{ '--i': idx } as CSSProperties}>
+        {shown.map((i, idx) => {
+          const featured = sort === 'win' && filter === 'all' && idx === 0 && i.winRate != null
+          return (
+          <div className={'card' + (featured ? ' featured' : '')} key={i.id} style={{ '--i': idx } as CSSProperties}>
             <HoverVideo className="ph" poster={i.poster} src={clip(CAT_CLIP[i.category ?? ''] ?? 'beauty2')}>
               {i.status && <span className={'statusbadge ' + i.status}>{STATUS_LABEL[i.status]}</span>}
-              {i.winRate != null && <span className="winpred" style={{ background: i.winRate >= 70 ? 'var(--brand)' : 'rgba(10,20,15,.6)' }}>win {i.winRate}%</span>}
+              {i.winRate != null && <span className="winpred" style={{ background: i.winRate >= 70 ? 'var(--brand)' : 'rgba(10,20,15,.6)' }}>{featured ? '★ ' : ''}win {i.winRate}%</span>}
               {i.product}
             </HoverVideo>
             <div className="meta">
@@ -135,7 +137,8 @@ export default function Library() {
               </button>
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
       </>
       )}

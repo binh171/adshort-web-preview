@@ -31,7 +31,7 @@ export default function Connect() {
         <div className="panel connectcard">
           <div className="cxhead"><span className="cxname">🛍 Shopify</span>{shopify ? <span className="cbadge pass">Connected</span> : <span className="cbadge warn">Not linked</span>}</div>
           <p className="sub" style={{ margin: '4px 0 14px' }}>Pull products, images and prices to skip manual upload. Instant OAuth, low friction.</p>
-          <button className="btn sec block" disabled={shopify} onClick={() => setShopify(true)}>{shopify ? '✓ Store linked' : 'Link Shopify'}<span className="betag">⧗ OAuth</span></button>
+          <button className="btn sec block" disabled={shopify} onClick={() => setShopify(true)}>{shopify ? '✓ 24 products pulled' : 'Link Shopify'}<span className="betag">⧗ OAuth</span></button>
         </div>
 
         {/* Meta — gated, pre-flight audited */}
@@ -56,6 +56,25 @@ export default function Connect() {
           )}
           {metaConnected && <div className="note" style={{ background: 'var(--brand-soft)', borderColor: 'var(--brand-line)', color: 'var(--brand)' }}>✓ Meta connected, you can one-click publish from any variant. Live publish still routes through app-review.</div>}
         </div>
+      </div>
+
+      {/* B5 — CAPI health: verify it's live (we don't set it up; that's Meta's job) */}
+      <div className="panel capicard" style={{ marginTop: 16 }}>
+        <div className="cxhead">
+          <span className="cxname">📊 Conversions API health</span>
+          {metaConnected ? <span className="cbadge pass">Healthy</span> : <span className="cbadge warn">Connect Meta to verify</span>}
+        </div>
+        <p className="sub" style={{ margin: '4px 0 14px' }}>Sellers lose 15&ndash;30% of conversions when the Conversions API isn't firing, and most don't know. We verify it's live and healthy; we never touch your setup.</p>
+        {metaConnected ? (
+          <div className="capirows">
+            <div className="capirow"><span>Pixel events</span><b className="mono">1,240 / wk</b></div>
+            <div className="capirow"><span>CAPI events</span><b className="mono">1,410 / wk</b></div>
+            <div className="capirow ok"><span>Net recovered vs pixel-only</span><b className="mono">+13.7%</b></div>
+            <span className="betag">⧗ BE · Meta pixel + CAPI feed</span>
+          </div>
+        ) : (
+          <a className="link" href="https://www.facebook.com/business/help/2041148702652965" target="_blank" rel="noopener noreferrer">Set up the Conversions API in Meta docs →</a>
+        )}
       </div>
 
       <div className="freeline" style={{ marginTop: 16 }}>
