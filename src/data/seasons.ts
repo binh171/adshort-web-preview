@@ -22,12 +22,12 @@ export const SEASONS: Season[] = [
 export const PRODUCT_CATS = ['Beauty', 'Skincare', 'Pet', 'Supplement', 'Home', 'Fitness', 'Baby', 'Fashion']
 
 export const AFFORDANCE: Record<string, { rec: string[]; sup: [string, string][] }> = {
-  Beauty:     { rec: ['beforeafter', 'testimonial', 'review'], sup: [['petreaction', 'reaction ít hợp beauty'], ['turntable', 'sản phẩm cầm-được, không cần 360 tĩnh']] },
-  Skincare:   { rec: ['beforeafter', 'review', 'testimonial'], sup: [['turntable', 'không cần 360 tĩnh']] },
-  Pet:        { rec: ['petreaction', 'unboxing', 'demo'],      sup: [['beforeafter', 'pet khó thể hiện before-after tin cậy']] },
-  Supplement: { rec: ['testimonial', 'review'],                sup: [['beforeafter', 'tránh before-after "kết quả", Meta reject health claims']] },
-  Home:       { rec: ['demo', 'beforeafter', 'hero'],          sup: [['testimonial', 'home gadget yếu với testimonial đơn']] },
-  Fitness:    { rec: ['testimonial', 'beforeafter'],           sup: [['petreaction', 'reaction đơn ít hợp']] },
+  Beauty:     { rec: ['beforeafter', 'testimonial', 'review'], sup: [['petreaction', 'pet reactions do not fit beauty'], ['turntable', 'holdable product, no static 360 needed']] },
+  Skincare:   { rec: ['beforeafter', 'review', 'testimonial'], sup: [['turntable', 'no static 360 needed']] },
+  Pet:        { rec: ['petreaction', 'unboxing', 'demo'],      sup: [['beforeafter', 'pets rarely show a credible before-after']] },
+  Supplement: { rec: ['testimonial', 'review'],                sup: [['beforeafter', 'avoid before-after "results", Meta rejects health claims']] },
+  Home:       { rec: ['demo', 'beforeafter', 'hero'],          sup: [['testimonial', 'home gadgets are weak with a lone testimonial']] },
+  Fitness:    { rec: ['testimonial', 'beforeafter'],           sup: [['petreaction', 'a lone reaction does not fit']] },
   Baby:       { rec: ['testimonial', 'unboxing', 'petreaction'], sup: [] },
-  Fashion:    { rec: [], sup: [['*', 'try-on / VTON desktop-heavy → DEFER (chưa trong bộ LOCK real-footage)']] },
+  Fashion:    { rec: [], sup: [['*', 'try-on / VTON is desktop-heavy, deferred (not in the real-footage lock set)']] },
 }

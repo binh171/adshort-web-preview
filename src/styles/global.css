@@ -228,6 +228,15 @@ a{color:var(--brand);text-decoration:none}
 .coach .coachbar{height:8px;border-radius:20px;background:var(--panel-2);border:1px solid var(--line);overflow:hidden;margin-top:12px}
 .coach .coachbar span{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-br));transition:width .5s var(--ease)}
 @media(max-width:640px){.coach .top{flex-direction:column}}
+
+/* template-first: affordance recommendation in the format picker */
+.recbar{display:flex;flex-direction:column;gap:2px;background:var(--brand-soft);border:1px solid var(--brand-line);border-radius:12px;padding:11px 15px;margin-bottom:16px}
+.recbar b{color:var(--brand);font-size:.9rem}
+.recbar span{font-size:.8rem;color:var(--ink-2);line-height:1.45}
+.card .ph .recflag{position:absolute;top:9px;right:9px;z-index:2;font-family:var(--mono);font-size:.56rem;font-weight:800;letter-spacing:.03em;padding:3px 8px;border-radius:999px;background:var(--brand);color:#fff}
+.card.dim{opacity:.55;transition:opacity .2s var(--ease)}
+.card.dim:hover{opacity:1}
+.supreason{padding:0 11px 10px;font-size:.72rem;color:var(--gold-ink);line-height:1.35}
 .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .card{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--panel);text-align:left;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .2s;cursor:pointer}
 .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift);border-color:var(--brand-line)}
