@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import { useApp, type LibraryItem } from '../lib/store'
 
 // Honest signals (USP #2/#8): Fresh / Scale / Refresh — never a blind "Winner/Loser".
@@ -24,6 +25,7 @@ function analyze(i: LibraryItem): Metric {
 
 export default function Intelligence() {
   const { library } = useApp()
+  const nav = useNavigate()
   const rows = library.map((i) => ({ i, m: analyze(i) }))
   const scaling = rows.filter((r) => r.m.rec === 'Scale').length
   const refresh = rows.filter((r) => r.m.rec === 'Refresh').length
@@ -34,6 +36,15 @@ export default function Intelligence() {
       <h2 className="title">What to scale, what to refresh</h2>
       <p className="sub">Pixel-clean CTR, hold-rate &amp; frequency with a confidence band, and the <b>reason</b> behind every call. No blind "winner/loser": Motion shows a number, we tell you why. <span className="betag">⧗ BE metrics (Meta pixel)</span></p>
 
+      {library.length === 0 ? (
+        <div className="empty">
+          <div className="emptyic">📊</div>
+          <h3>No performance data yet</h3>
+          <p className="sub" style={{ margin: '6px auto 18px', maxWidth: 460 }}>Publish an ad and connect Meta, then real CTR, hold-rate and frequency land here with a plain-English call: scale, keep testing, or refresh. No blind winner/loser.</p>
+          <button className="btn pri" onClick={() => nav('/advideo')}>Create an ad →</button>
+        </div>
+      ) : (
+      <>
       <div className="insights">
         <div className="insight"><div className="v">{rows.length}</div><div className="k">Ads tracked</div></div>
         <div className="insight"><div className="v">{scaling}</div><div className="k">Ready to scale</div></div>
@@ -62,6 +73,8 @@ export default function Intelligence() {
           </div>
         ))}
       </div>
+      </>
+      )}
     </div>
   )
 }

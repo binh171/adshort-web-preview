@@ -56,6 +56,15 @@ export default function Library() {
       <h2 className="title">Your creative library</h2>
       <p className="sub">Every ad + how it performed, in one memory. The moat against churn: your winners stay searchable and one-click remixable, Fresh &amp; Scaling, never a "loser" verdict.</p>
 
+      {library.length === 0 ? (
+        <div className="empty">
+          <div className="emptyic">🗂️</div>
+          <h3>No ads on record yet</h3>
+          <p className="sub" style={{ margin: '6px auto 18px', maxWidth: 460 }}>Your library is your second brain: every ad you make lands here with its performance, searchable and one-click remixable. Make your first one to start the memory.</p>
+          <button className="btn pri" onClick={() => nav('/advideo')}>Create your first ad →</button>
+        </div>
+      ) : (
+      <>
       {/* second-brain insights */}
       <div className="insights">
         <div className="insight"><div className="v">{insight.total}</div><div className="k">Ads on record</div></div>
@@ -108,6 +117,8 @@ export default function Library() {
           </div>
         ))}
       </div>
+      </>
+      )}
     </div>
   )
 }

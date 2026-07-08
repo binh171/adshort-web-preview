@@ -19,19 +19,37 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
 const grad = (a: string, b: string) =>
   `radial-gradient(90% 60% at 22% 12%, rgba(255,255,255,.20), transparent 55%), linear-gradient(0deg, rgba(0,0,0,.28), transparent 42%), linear-gradient(158deg, ${a} 6%, ${b})`
 
-// ⧗ BE: product-detect + remove-BG. Mock returns a plausible angle set.
-export async function detectProduct(_files: File[] | null): Promise<DetectResult> {
+// ⧗ BE: product-detect + remove-BG. Mock varies the product so repeated tries /
+// different uploads don't always resolve to the same item.
+const ang = (front: string, label: string, texture: string): Angle[] => [
+  { id: 'front', label: 'front', kind: 'front', url: poster(front) },
+  { id: 'label', label: 'label', kind: 'label', url: poster(label) },
+  { id: 'texture', label: 'texture', kind: 'texture', url: poster(texture) },
+]
+const MOCK_PRODUCTS: DetectResult[] = [
+  { category: 'Skincare', productName: 'The Inkey List Hyaluronic Acid Serum', label: 'The Inkey List', angles: ang('serum', 'cream', 'product_hero') },
+  { category: 'Supplement', productName: 'Nordic Collagen Peptides', label: 'Nordic', angles: ang('supplement', 'supplement', 'product_hero') },
+  { category: 'Pet', productName: 'PawPro Deshedding Grooming Kit', label: 'PawPro', angles: ang('pet_grooming', 'pet_toy', 'pet_grooming') },
+  { category: 'Home', productName: 'ClearSpace Pantry Jar Set', label: 'ClearSpace', angles: ang('home', 'home', 'product_hero') },
+  { category: 'Grooming', productName: 'Rugged Beard Oil 30ml', label: 'Rugged', angles: ang('beard_oil', 'beard_oil', 'product_hero') },
+]
+const KW: [RegExp, number][] = [
+  [/pet|dog|cat|paw|groom/i, 2], [/supp|vitamin|collagen|capsule|gummy/i, 1],
+  [/coffee|kitchen|home|jar|pantry|spice|organi/i, 3], [/beard|oil|men/i, 4],
+  [/serum|skin|cream|beauty|face/i, 0],
+]
+let sampleIdx = -1
+export async function detectProduct(files: File[] | null): Promise<DetectResult> {
   await wait(700)
-  return {
-    category: 'Skincare',
-    productName: 'The Inkey List Hyaluronic Acid Serum',
-    label: 'The Inkey List',
-    angles: [
-      { id: 'front', label: 'front', kind: 'front', url: poster('serum') },
-      { id: 'label', label: 'label', kind: 'label', url: poster('cream') },
-      { id: 'texture', label: 'texture', kind: 'texture', url: poster('product_hero') },
-    ],
+  const name = files?.[0]?.name ?? ''
+  if (name) {
+    const hit = KW.find(([re]) => re.test(name))
+    if (hit) return MOCK_PRODUCTS[hit[1]]
+    let h = 0; for (const c of name) h = (h * 31 + c.charCodeAt(0)) >>> 0
+    return MOCK_PRODUCTS[h % MOCK_PRODUCTS.length]
   }
+  sampleIdx = (sampleIdx + 1) % MOCK_PRODUCTS.length // sample/URL: rotate on repeat
+  return MOCK_PRODUCTS[sampleIdx]
 }
 
 // ⧗ BE: brain writes the shot-script from format + detected product.

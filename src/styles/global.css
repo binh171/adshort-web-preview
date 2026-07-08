@@ -55,6 +55,19 @@ a{color:var(--brand);text-decoration:none}
 /* demo mode: hide prototype/dev chrome for a clean pitch (betag + CTO bar) */
 .shell.demo .betag,.shell.demo .ctobar{display:none}
 
+/* video preview modal */
+.vmodal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:28px;background:rgba(8,14,11,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.vmbody{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
+.vmvid{max-height:80vh;max-width:88vw;aspect-ratio:9/16;border-radius:16px;background:#000;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+.vmnote{font-size:.78rem;color:#cdeee0;font-weight:500}
+.vmclose{position:absolute;top:-8px;right:-8px;width:34px;height:34px;border-radius:50%;background:var(--panel);color:var(--ink);font-size:.9rem;font-weight:700;box-shadow:var(--shadow);display:grid;place-items:center;transition:transform .12s}
+.vmclose:hover{transform:scale(1.08)}
+
+/* empty states (new seller, no data yet) */
+.empty{text-align:center;padding:52px 24px;max-width:520px;margin:30px auto;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.empty .emptyic{font-size:2.4rem;line-height:1}
+.empty h3{font-size:1.15rem;margin-top:12px}
+
 .bebanner{max-width:1120px;margin:10px auto 0;padding:0 22px}
 .bebanner .in{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:11px;padding:10px 15px;font-size:.8rem;color:var(--gold-ink);line-height:1.5}
 .bebanner b{color:var(--gold-ink-dk)}
@@ -345,7 +358,13 @@ a{color:var(--brand);text-decoration:none}
   .split .arrow{flex-direction:row;gap:8px}
   .qrpanel{flex-direction:column;align-items:flex-start;gap:14px}
   .startbar{flex-direction:column;align-items:stretch}
-  .tabs{display:none}
+  /* keep nav reachable on mobile: horizontal-scroll tab strip instead of hiding */
+  .topbar{gap:8px;padding:10px 12px}
+  .tabs{margin-left:2px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1 1 auto}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto}
+  .topbar .right{gap:8px}
+  .bebanner{padding:0 12px}
 }
 @media(prefers-reduced-motion:reduce){ .vslot .spin{animation:none} .stage{animation:none} html{scroll-behavior:auto} }
 
