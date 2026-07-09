@@ -1,5 +1,14 @@
 /* ===== AdShort Web — design tokens (iOS-26 glass, light, emerald) =====
    OKLCH, anchor hue 166 (brand+neutral). See DESIGN.md. Visual-equivalent to prior hex. */
+/* Display face: Fraunces (OFL), self-hosted variable woff2 — no CDN (CSP). Headings only. */
+@font-face{
+  font-family:'Fraunces';
+  font-style:normal;
+  font-weight:400 900;
+  font-display:swap;
+  src:url('../assets/fonts/fraunces-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 :root{
   --brand-hue:166;
   --bg:oklch(97.0% 0.004 166); --panel:oklch(100% 0 166); --panel-2:oklch(95.2% 0.009 166); --raise:oklch(93.7% 0.013 166);
@@ -13,6 +22,7 @@
   --brand-glow:oklch(65.3% 0.134 166 / .5);
   --mono:ui-monospace,"SF Mono","Cascadia Code","Segoe UI Mono",monospace;
   --sans:system-ui,-apple-system,"Segoe UI Variable","Segoe UI",Roboto,sans-serif;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
   --shadow:0 14px 34px -18px oklch(30% 0.03 166 / .4);
   /* Liquid Glass materials */
   --mat-thin:color-mix(in oklab, var(--bg) 62%, transparent);
@@ -125,7 +135,7 @@ a{color:var(--brand);text-decoration:none}
 .crumb{font-size:.78rem;color:var(--muted);margin-bottom:12px}
 .crumb b{color:var(--ink-2)}
 .back{font-size:.84rem;color:var(--brand);font-weight:600;margin-bottom:14px;display:inline-flex;gap:5px;align-items:center}
-.title{font-size:clamp(1.55rem,2.9vw,2.2rem);letter-spacing:-.025em;line-height:1.1}
+.title{font-family:var(--display);font-optical-sizing:auto;font-size:clamp(1.6rem,3vw,2.35rem);font-weight:560;letter-spacing:-.018em;line-height:1.08}
 .sub{color:var(--muted);font-size:.92rem;margin-top:5px;max-width:640px}
 
 /* ===== primitives ===== */
@@ -196,7 +206,7 @@ a{color:var(--brand);text-decoration:none}
 /* ===== Home hero — real-product collage (C) + Generate bar (B); dark-luxe (A) via dark theme ===== */
 .hero{border-radius:22px;overflow:hidden;margin-bottom:28px;box-shadow:var(--shadow-soft)}
 .heroeye{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted)}
-.herobig{font-size:clamp(2.4rem,5.2vw,4.4rem);font-weight:800;letter-spacing:-.035em;line-height:1.03;text-wrap:balance;margin:.16em 0 .1em}
+.herobig{font-family:var(--display);font-optical-sizing:auto;font-size:clamp(2.5rem,5.4vw,4.6rem);font-weight:600;letter-spacing:-.02em;line-height:1.0;text-wrap:balance;margin:.16em 0 .1em}
 .em{color:var(--brand)}
 .herosub{font-size:1.02rem;line-height:1.55;color:var(--muted);max-width:44ch;margin:.5em 0 1.1em}
 .genbar{display:flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--brand-line);border-radius:999px;padding:7px 7px 7px 20px;box-shadow:0 0 0 5px oklch(80% .10 166/.20),0 22px 54px -26px var(--brand-glow);max-width:480px}
@@ -445,7 +455,7 @@ a{color:var(--brand);text-decoration:none}
 .ob{max-width:1080px;margin:0 auto;padding-top:8px}
 .obsplit{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
 .obleft{text-align:left}
-.obh1{font-size:clamp(2.3rem,4.4vw,3.5rem);font-weight:800;letter-spacing:-.03em;line-height:1.04;margin:12px 0 0;max-width:15ch;text-wrap:balance}
+.obh1{font-family:var(--display);font-optical-sizing:auto;font-size:clamp(2.4rem,4.6vw,3.7rem);font-weight:600;letter-spacing:-.018em;line-height:1.02;margin:12px 0 0;max-width:15ch;text-wrap:balance}
 .obsub{max-width:44ch}
 .obright{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
 .proofhead{font-size:.8rem;color:var(--muted);font-weight:600;margin-bottom:12px}
