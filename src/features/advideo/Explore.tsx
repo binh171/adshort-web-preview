@@ -6,6 +6,7 @@ import { useApp } from '../../lib/store'
 import { detectProduct } from '../../lib/be'
 import { clip } from '../../lib/img'
 import HoverVideo from '../HoverVideo'
+import { PageHead } from '../Page'
 
 const FMT_CLIP: Record<string, string> = {
   review: 'beauty3', beforeafter: 'beauty4', demo: 'home', unboxing: 'beauty1',
@@ -39,9 +40,11 @@ export default function Explore() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>AdVideo</b> · pick a format or start from your product</div>
-      <h2 className="title">What are we selling today?</h2>
-      <p className="sub">Real product footage in, a scroll-stopping ad out. Pick a proven format, or upload your product and we'll suggest one.</p>
+      <PageHead
+        eyebrow={<><b>AdVideo</b> · pick a format or start from your product</>}
+        title="What are we selling today?"
+        sub={<>Real product footage in, a scroll-stopping ad out. Pick a proven format, or upload your product and we'll suggest one.</>}
+      />
 
       {aff ? (
         <div className="recbar">

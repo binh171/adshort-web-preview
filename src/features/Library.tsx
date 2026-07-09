@@ -5,6 +5,7 @@ import { FORMATS } from '../data/formats'
 import { detectProduct } from '../lib/be'
 import { clip } from '../lib/img'
 import HoverVideo from './HoverVideo'
+import { PageHead } from './Page'
 
 const CAT_CLIP: Record<string, string> = { Beauty: 'beauty3', Supplement: 'beauty2', Home: 'home', Pet: 'pet' }
 
@@ -61,9 +62,11 @@ export default function Library() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Library</b> · your ad system-of-record, what worked, by product / format / month</div>
-      <h2 className="title">Your creative library</h2>
-      <p className="sub">Every ad + how it performed, in one memory. The moat against churn: your winners stay searchable and one-click remixable, Fresh &amp; Scaling, never a "loser" verdict.</p>
+      <PageHead
+        eyebrow={<><b>Library</b> · your ad system-of-record, what worked, by product / format / month</>}
+        title="Your creative library"
+        sub={<>Every ad + how it performed, in one memory. The moat against churn: your winners stay searchable and one-click remixable, Fresh &amp; Scaling, never a "loser" verdict.</>}
+      />
 
       {library.length === 0 ? (
         <div className="empty">

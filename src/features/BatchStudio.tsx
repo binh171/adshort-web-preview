@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../lib/store'
 import { FORMATS } from '../data/formats'
 import { detectProduct, streamBatch, type BatchCell, type BatchCombo } from '../lib/be'
+import { PageHead } from './Page'
 
 const WIN_GATE = 70 // predicted win% at/above this = a "keeper"
 
@@ -64,9 +65,11 @@ export default function BatchStudio() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Batch Studio</b> · test many angles at once, the web-only wedge</div>
-      <h2 className="title">Batch Studio</h2>
-      <p className="sub">Pick a few formats and a few real angles, generate the whole matrix in one run. <b>Test 15 winning angles for the price of one Fiverr video.</b> Your phone gens one at a time; the cockpit gens the grid.</p>
+      <PageHead
+        eyebrow={<><b>Batch Studio</b> · test many angles at once, the web-only wedge</>}
+        title="Batch Studio"
+        sub={<>Pick a few formats and a few real angles, generate the whole matrix in one run. <b>Test 15 winning angles for the price of one Fiverr video.</b> Your phone gens one at a time; the cockpit gens the grid.</>}
+      />
 
       {!product ? (
         <div className="stub" style={{ marginTop: 24 }}>

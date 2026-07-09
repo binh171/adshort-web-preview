@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../lib/store'
 import { buildBrief } from '../../lib/be'
 import { FORMATS } from '../../data/formats'
+import { PageHead } from '../Page'
 
 const ASPECTS = ['9:16', '4:5', '1:1'] as const
 const LENGTHS = [8, 10, 15] as const
@@ -30,8 +31,10 @@ export default function Console() {
   return (
     <div className="stage">
       <button className="back" onClick={() => nav('/advideo')}>← Back to formats</button>
-      <h2 className="title">Brief: <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</h2>
-      <p className="sub">The brain wrote the shot-script from your format. The ◈ chips are <b>your real product angles</b>. Edit any word before generating.</p>
+      <PageHead
+        title={<>Brief: <span style={{ color: 'var(--brand)' }}>{fmt?.name}</span> · {product.productName}</>}
+        sub={<>The brain wrote the shot-script from your format. The ◈ chips are <b>your real product angles</b>. Edit any word before generating.</>}
+      />
 
       <div className="grid2" style={{ marginTop: 16 }}>
         <div className="panel">

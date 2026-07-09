@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useApp } from '../lib/store'
 import { PLANS } from '../data/plans'
 import { startCheckout } from '../lib/be'
+import { PageHead } from './Page'
 
 export default function Billing() {
   const { credits, plan, setPlan } = useApp()
@@ -19,9 +20,11 @@ export default function Billing() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Plans</b> · pay for winning ads, not locked-in seats</div>
-      <h2 className="title">Test more angles, keep more winners</h2>
-      <p className="sub">Flat weekly credits that auto-reset, no hoarding. No watermark, ever. Cancel same-day and keep the credits you already have. One winning angle pays for the month.</p>
+      <PageHead
+        eyebrow={<><b>Plans</b> · pay for winning ads, not locked-in seats</>}
+        title="Test more angles, keep more winners"
+        sub={<>Flat weekly credits that auto-reset, no hoarding. No watermark, ever. Cancel same-day and keep the credits you already have. One winning angle pays for the month.</>}
+      />
 
       <div className="pricing">
         {PLANS.map((p) => (

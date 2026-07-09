@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { checkMetaReadiness, type ReadyCheck } from '../lib/be'
+import { PageHead } from './Page'
 
 const ICON: Record<ReadyCheck['status'], string> = { pass: '✓', warn: '!', block: '⛔' }
 
@@ -22,9 +23,11 @@ export default function Connect() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Connect</b> · export-first, connect only to publish in one click</div>
-      <h2 className="title">Connect your channels</h2>
-      <p className="sub">You never need to connect to use AdShort, export MP4 and upload yourself (most sellers prefer the control). Connect only if you want one-click publish. Shopify links instantly; Meta we pre-flight first so you don't hit a silent failure.</p>
+      <PageHead
+        eyebrow={<><b>Connect</b> · export-first, connect only to publish in one click</>}
+        title="Connect your channels"
+        sub={<>You never need to connect to use AdShort, export MP4 and upload yourself (most sellers prefer the control). Connect only if you want one-click publish. Shopify links instantly; Meta we pre-flight first so you don't hit a silent failure.</>}
+      />
 
       <div className="grid2" style={{ marginTop: 16, gridTemplateColumns: '1fr 1fr' }}>
         {/* Shopify — decoupled, instant */}

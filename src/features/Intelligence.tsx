@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useApp, type LibraryItem } from '../lib/store'
+import { PageHead } from './Page'
 
 // Honest signals (USP #2/#8): Fresh / Scale / Refresh — never a blind "Winner/Loser".
 // Post-ATT reality: CTR/hold/frequency are pixel-clean; ROAS needs $1.5–2k for significance.
@@ -32,9 +33,11 @@ export default function Intelligence() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Intelligence</b> · honest signals, why, not just a score</div>
-      <h2 className="title">What to scale, what to refresh</h2>
-      <p className="sub">Pixel-clean CTR, hold-rate &amp; frequency with a confidence band, and the <b>reason</b> behind every call. No blind "winner/loser": Motion shows a number, we tell you why. <span className="betag">⧗ BE metrics (Meta pixel)</span></p>
+      <PageHead
+        eyebrow={<><b>Intelligence</b> · honest signals, why, not just a score</>}
+        title="What to scale, what to refresh"
+        sub={<>Pixel-clean CTR, hold-rate &amp; frequency with a confidence band, and the <b>reason</b> behind every call. No blind "winner/loser": Motion shows a number, we tell you why. <span className="betag">⧗ BE metrics (Meta pixel)</span></>}
+      />
 
       {library.length === 0 ? (
         <div className="empty">

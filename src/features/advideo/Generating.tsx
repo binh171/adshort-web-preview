@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../lib/store'
 import { streamProgress, type Variant } from '../../lib/be'
+import { PageHead } from '../Page'
 
 export default function Generating() {
   const nav = useNavigate()
@@ -32,8 +33,10 @@ export default function Generating() {
   return (
     <div className="stage">
       <div className="genwrap">
-        <h2 className="title">Making your 3 variants…</h2>
-        <p className="sub">Rendered in parallel, the first shows the moment it's ready, no staring at a spinner. <span className="betag">⧗ BE render</span></p>
+        <PageHead
+          title="Making your 3 variants…"
+          sub={<>Rendered in parallel, the first shows the moment it's ready, no staring at a spinner. <span className="betag">⧗ BE render</span></>}
+        />
         <div className="prog"><div className="fill" style={{ width: pct + '%' }} /></div>
         <div className="status">{status}</div>
         <div className="vgrid">

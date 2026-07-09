@@ -7,6 +7,7 @@ import { clip } from '../../lib/img'
 import Compliance from './Compliance'
 import VideoModal from '../VideoModal'
 import HoverVideo from '../HoverVideo'
+import { PageHead } from '../Page'
 
 const CLIPS = ['beauty2', 'beauty3', 'beauty4'] // sample preview per variant
 
@@ -36,8 +37,10 @@ export default function Results() {
   return (
     <div className="stage">
       <button className="back" onClick={() => nav('/advideo/create')}>← Tweak the brief</button>
-      <h2 className="title">Three takes on your product</h2>
-      <p className="sub">All from your real footage. Pick one, tweak inline, then export or save to your library.</p>
+      <PageHead
+        title="Three takes on your product"
+        sub={<>All from your real footage. Pick one, tweak inline, then export or save to your library.</>}
+      />
 
       <div className="results3">
         {variants.map((v, i) => (

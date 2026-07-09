@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactElement } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { fetchInbox, pairPhone, detectProduct, type PhoneItem } from '../lib/be'
+import { PageHead } from './Page'
 
 // Faux QR (deterministic from seed) — reads as a scan code without a lib.
 function qrSvg(seed: string) {
@@ -51,9 +52,11 @@ export default function Inbox() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Inbox</b> · the bridge between your phone and this cockpit</div>
-      <h2 className="title">From your phone</h2>
-      <p className="sub">You shoot products on your phone; the heavy production lives here on the web. Captures and drafts you send from the AdShort app land in this inbox, no re-upload.</p>
+      <PageHead
+        eyebrow={<><b>Inbox</b> · the bridge between your phone and this cockpit</>}
+        title="From your phone"
+        sub={<>You shoot products on your phone; the heavy production lives here on the web. Captures and drafts you send from the AdShort app land in this inbox, no re-upload.</>}
+      />
 
       {/* app ⇄ web split — deliberately different surfaces, one cloud-synced draft */}
       <div className="split">

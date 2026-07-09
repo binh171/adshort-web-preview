@@ -4,6 +4,7 @@ import { useApp } from '../lib/store'
 import { FORMATS } from '../data/formats'
 import { detectProduct } from '../lib/be'
 import { SEASONS, AFFORDANCE, PRODUCT_CATS } from '../data/seasons'
+import { PageHead } from './Page'
 
 const MONTH_IDX = new Date().getMonth() // browser-live: engine follows the real calendar
 const fmt = (id: string) => FORMATS.find((f) => f.id === id)
@@ -29,9 +30,11 @@ export default function Trending() {
 
   return (
     <div className="stage">
-      <div className="crumb"><b>Trending</b> · build for the season before it peaks</div>
-      <h2 className="title">Trending now · {now.month}</h2>
-      <p className="sub">Sellers who pre-stock win the season. We surface what's surging now, what to build for next month, and the right format per category, the contextual routing no competitor does.</p>
+      <PageHead
+        eyebrow={<><b>Trending</b> · build for the season before it peaks</>}
+        title={<>Trending now · {now.month}</>}
+        sub={<>Sellers who pre-stock win the season. We surface what's surging now, what to build for next month, and the right format per category, the contextual routing no competitor does.</>}
+      />
 
       {/* build-ahead: month X built in X−1 */}
       <div className="panel aheadcard">
