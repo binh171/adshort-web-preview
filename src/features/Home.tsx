@@ -40,11 +40,13 @@ export default function Home() {
     <div className="stage">
       {/* HERO — emerald-energy: centered oversized headline + glowing Generate bar */}
       <section className="hero heroB">
+        {/* poster collage = reduced-motion fallback; a live clip plays over it as ambient depth */}
         <div className="herocollage" aria-hidden="true">
           {collage.map((bg, i) => (
             <span key={i} style={{ background: bg }} />
           ))}
         </div>
+        <video className="herovideo" aria-hidden="true" src={clip('beauty2')} poster={library[0]?.poster} autoPlay muted loop playsInline preload="metadata" />
         <div className="heroeye">Real footage in, scroll-stopping ad out</div>
         <h1 className="herobig">Turn one product into<br /><span className="em">ten winning ads</span>.</h1>
         <p className="herosub">Paste your store link or upload a photo. We detect, edit, narrate and export for Meta, at the scale your ads need. Real footage only, no avatars.</p>
