@@ -2,7 +2,7 @@ import { useState, type CSSProperties } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../lib/store'
 import { detectProduct } from '../lib/be'
-import { clip } from '../lib/img'
+import { clip, poster } from '../lib/img'
 import { SEASONS } from '../data/seasons'
 import HoverVideo from './HoverVideo'
 
@@ -29,6 +29,10 @@ export default function Home() {
   }
 
   const recent = library.slice(0, 6)
+  // hero backdrop: our own posters as a dim ghost-collage (UI8-style depth, license-safe)
+  const posters = library.map((l) => l.poster).filter(Boolean)
+  const fallback = ['beauty1', 'beauty2', 'beauty3', 'home', 'pet', 'ugc', 'coffee', 'matcha']
+  const collage = Array.from({ length: 18 }, (_, i) => (posters.length ? posters[i % posters.length] : poster(fallback[i % fallback.length])))
   const nextSeason = SEASONS[(new Date().getMonth() + 1) % 12]
   const best = library.reduce<(typeof library)[number] | null>((a, b) => (!a || (b.winRate ?? 0) > (a.winRate ?? 0) ? b : a), null)
 
@@ -36,6 +40,11 @@ export default function Home() {
     <div className="stage">
       {/* HERO — emerald-energy: centered oversized headline + glowing Generate bar */}
       <section className="hero heroB">
+        <div className="herocollage" aria-hidden="true">
+          {collage.map((bg, i) => (
+            <span key={i} style={{ background: bg }} />
+          ))}
+        </div>
         <div className="heroeye">Real footage in, scroll-stopping ad out</div>
         <h1 className="herobig">Turn one product into<br /><span className="em">ten winning ads</span>.</h1>
         <p className="herosub">Paste your store link or upload a photo. We detect, edit, narrate and export for Meta, at the scale your ads need. Real footage only, no avatars.</p>
@@ -58,7 +67,7 @@ export default function Home() {
         <div className="gal">
           {recent.map((it, i) => (
             <button className="card" key={it.id} onClick={() => remix()} style={{ '--i': i } as CSSProperties}>
-              <HoverVideo className="ph" poster={it.poster} src={clip(CAT_CLIP[it.category ?? ''] ?? 'beauty2')}>
+              <HoverVideo className="ph" poster={it.poster} src={clip(CAT_CLIP[it.category ?? ''] ?? 'beauty2')} cta="↻ Remix this">
                 {it.status && <span className={'rstat ' + it.status}>{it.status}</span>}
                 {it.winRate != null && <span className="rbadge">{it.winRate}%</span>}
               </HoverVideo>
