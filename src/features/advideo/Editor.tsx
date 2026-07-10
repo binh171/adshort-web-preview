@@ -4,6 +4,7 @@ import { useApp } from '../../lib/store'
 import { buildShotScript, type Beat } from '../../lib/be'
 import { FORMATS } from '../../data/formats'
 import { PageHead } from '../Page'
+import { Music, Captions, Download } from 'lucide-react'
 
 const ASPECTS = ['9:16', '4:5', '1:1'] as const
 const LENGTHS = [8, 10, 15] as const
@@ -72,10 +73,10 @@ export default function Editor() {
             <h4>Controls</h4>
             <div className="ctrl"><span className="k">Aspect (Meta-first)</span><div className="seg">{ASPECTS.map((a) => <button key={a} className={opts.aspect === a ? 'on' : ''} onClick={() => setOpts({ aspect: a })}>{a}</button>)}</div></div>
             <div className="ctrl"><span className="k">Length (trim)</span><div className="seg">{LENGTHS.map((l) => <button key={l} className={opts.length === l ? 'on' : ''} onClick={() => setOpts({ length: l })}>{l}s</button>)}</div></div>
-            <div className="ctrl"><span className="k">Music</span><button className={'addon' + (opts.music ? ' on' : '')} onClick={() => setOpts({ music: !opts.music })}>🎵 {opts.music ? 'On' : 'Off'}</button></div>
-            <div className="ctrl"><span className="k">Caption</span><button className={'addon' + (caption ? ' on' : '')} onClick={() => setCaption((c) => !c)}>💬 {caption ? 'On' : 'Off'}</button></div>
+            <div className="ctrl"><span className="k">Music</span><button className={'addon' + (opts.music ? ' on' : '')} onClick={() => setOpts({ music: !opts.music })}><Music size={14} /> {opts.music ? 'On' : 'Off'}</button></div>
+            <div className="ctrl"><span className="k">Caption</span><button className={'addon' + (caption ? ' on' : '')} onClick={() => setCaption((c) => !c)}><Captions size={14} /> {caption ? 'On' : 'Off'}</button></div>
             {caption && <input className="bin" style={{ width: '100%', marginTop: 8 }} value={captionText} onChange={(e) => setCaptionText(e.target.value)} />}
-            <button className="btn pri block lg" style={{ marginTop: 14 }} onClick={() => flash('Exported ' + opts.aspect + ' MP4 · C2PA embedded ✓')}>⬇ Export {opts.aspect} MP4</button>
+            <button className="btn pri block lg" style={{ marginTop: 14 }} onClick={() => flash('Exported ' + opts.aspect + ' MP4 · C2PA embedded ✓')}><Download size={17} /> Export {opts.aspect} MP4</button>
           </div>
         </div>
       </div>

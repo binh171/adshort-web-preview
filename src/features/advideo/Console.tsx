@@ -4,6 +4,7 @@ import { useApp } from '../../lib/store'
 import { buildBrief } from '../../lib/be'
 import { FORMATS } from '../../data/formats'
 import { PageHead } from '../Page'
+import { Music, Mic, Camera, Sparkles, Settings } from 'lucide-react'
 
 const ASPECTS = ['9:16', '4:5', '1:1'] as const
 const LENGTHS = [8, 10, 15] as const
@@ -53,7 +54,7 @@ export default function Console() {
             ))}
             <div className="angle add" title="add another real angle">+</div>
           </div>
-          <div className="note">⚙️ Engine (real-footage): these animate <b>your uploaded angles</b> via i2v + compose, not a text-to-fantasy model. Product stays pinned (element-lock); only safe knobs are editable.</div>
+          <div className="note"><Settings size={13} style={{ verticalAlign: '-2px', marginRight: 5, opacity: 0.85 }} />Engine (real-footage): these animate <b>your uploaded angles</b> via i2v + compose, not a text-to-fantasy model. Product stays pinned (element-lock); only safe knobs are editable.</div>
         </div>
 
         <div className="panel">
@@ -67,11 +68,11 @@ export default function Console() {
           <div className="ctrl"><span className="k">Hook</span><div className="seg"><button className="on">{opts.hook}</button></div></div>
           <h4 style={{ marginTop: 16 }}>Add-ons</h4>
           <div className="addons toggles">
-            <button className={'addon' + (opts.music ? ' on' : '')} onClick={() => setOpts({ music: !opts.music })}>🎵 Music · Upbeat</button>
-            <button className="addon">🗣️ Voiceover</button>
-            <button className="addon">🎬 Camera push-in</button>
+            <button className={'addon' + (opts.music ? ' on' : '')} onClick={() => setOpts({ music: !opts.music })}><Music size={15} /> Music · Upbeat</button>
+            <button className="addon"><Mic size={15} /> Voiceover</button>
+            <button className="addon"><Camera size={15} /> Camera push-in</button>
           </div>
-          <button className="btn pri block lg" style={{ marginTop: 16 }} disabled={loading} onClick={() => nav('/advideo/generating')}>✨ Generate 3 variants</button>
+          <button className="btn pri block lg" style={{ marginTop: 16 }} disabled={loading} onClick={() => nav('/advideo/generating')}><Sparkles size={18} /> Generate 3 variants</button>
           <div className="cost">≈ 3 videos · {opts.aspect} · {opts.length}s <span className="betag">⧗ BE gen/render</span></div>
         </div>
       </div>
