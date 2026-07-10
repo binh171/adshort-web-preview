@@ -66,7 +66,7 @@ export default function Console() {
           </div>
           <div className="ctrl"><span className="k">Hook</span><div className="seg"><button className="on">{opts.hook}</button></div></div>
           <h4 style={{ marginTop: 16 }}>Add-ons</h4>
-          <div className="addons">
+          <div className="addons toggles">
             <button className={'addon' + (opts.music ? ' on' : '')} onClick={() => setOpts({ music: !opts.music })}>🎵 Music · Upbeat</button>
             <button className="addon">🗣️ Voiceover</button>
             <button className="addon">🎬 Camera push-in</button>
